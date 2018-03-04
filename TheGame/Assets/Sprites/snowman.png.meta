@@ -1,53 +1,55 @@
 fileFormatVersion: 2
-guid: 7874dc36b5ddf3b45bee98f5536481f0
-timeCreated: 1521585728
+guid: 7f3e2253ed15dad4db443941d47502d3
+timeCreated: 1521671081
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: megamansoccer_iceman_sheet_0
-    21300002: megamansoccer_iceman_sheet_1
-    21300004: megamansoccer_iceman_sheet_2
-    21300006: megamansoccer_iceman_sheet_3
-    21300008: megamansoccer_iceman_sheet_4
-    21300010: megamansoccer_iceman_sheet_5
-    21300012: megamansoccer_iceman_sheet_6
-    21300014: megamansoccer_iceman_sheet_7
-    21300016: megamansoccer_iceman_sheet_8
-    21300018: megamansoccer_iceman_sheet_9
-    21300020: megamansoccer_iceman_sheet_10
-    21300022: megamansoccer_iceman_sheet_11
-    21300024: megamansoccer_iceman_sheet_12
-    21300026: megamansoccer_iceman_sheet_13
-    21300028: megamansoccer_iceman_sheet_14
-    21300030: megamansoccer_iceman_sheet_15
-    21300032: megamansoccer_iceman_sheet_16
-    21300034: megamansoccer_iceman_sheet_17
-    21300036: megamansoccer_iceman_sheet_18
-    21300038: megamansoccer_iceman_sheet_19
-    21300040: megamansoccer_iceman_sheet_20
-    21300042: megamansoccer_iceman_sheet_21
-    21300044: megamansoccer_iceman_sheet_22
-    21300046: megamansoccer_iceman_sheet_23
-    21300048: megamansoccer_iceman_sheet_24
-    21300050: megamansoccer_iceman_sheet_25
-    21300052: megamansoccer_iceman_sheet_26
-    21300054: megamansoccer_iceman_sheet_27
-    21300056: megamansoccer_iceman_sheet_28
-    21300058: megamansoccer_iceman_sheet_29
-    21300060: megamansoccer_iceman_sheet_30
-    21300062: megamansoccer_iceman_sheet_31
-    21300064: megamansoccer_iceman_sheet_32
-    21300066: megamansoccer_iceman_sheet_33
-    21300068: megamansoccer_iceman_sheet_34
-    21300070: megamansoccer_iceman_sheet_35
-    21300072: megamansoccer_iceman_sheet_36
-    21300074: megamansoccer_iceman_sheet_37
-    21300076: megamansoccer_iceman_sheet_38
-    21300078: megamansoccer_iceman_sheet_39
-    21300080: megamansoccer_iceman_sheet_40
-    21300082: megamansoccer_iceman_sheet_41
-    21300084: megamansoccer_iceman_sheet_42
-    21300086: megamansoccer_iceman_sheet_43
+    21300000: snowman_0
+    21300002: snowman_1
+    21300004: snowman_2
+    21300006: snowman_3
+    21300008: snowman_4
+    21300010: snowman_5
+    21300012: snowman_6
+    21300014: snowman_7
+    21300016: snowman_8
+    21300018: snowman_9
+    21300020: snowman_10
+    21300022: snowman_11
+    21300024: snowman_12
+    21300026: snowman_13
+    21300028: snowman_14
+    21300030: snowman_15
+    21300032: snowman_16
+    21300034: snowman_17
+    21300036: snowman_18
+    21300038: snowman_19
+    21300040: snowman_20
+    21300042: snowman_21
+    21300044: snowman_22
+    21300046: snowman_23
+    21300048: snowman_24
+    21300050: snowman_25
+    21300052: snowman_26
+    21300054: snowman_27
+    21300056: snowman_28
+    21300058: snowman_29
+    21300060: snowman_30
+    21300062: snowman_31
+    21300064: snowman_32
+    21300066: snowman_33
+    21300068: snowman_34
+    21300070: snowman_35
+    21300072: snowman_36
+    21300074: snowman_37
+    21300076: snowman_38
+    21300078: snowman_39
+    21300080: snowman_40
+    21300082: snowman_41
+    21300084: snowman_42
+    21300086: snowman_43
+    21300088: snowman_44
+    21300090: snowman_45
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -124,11 +126,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_0
+      name: snowman_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 205
+        x: 199
+        y: 401
         width: 23
         height: 23
       alignment: 0
@@ -138,11 +140,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_1
+      name: snowman_1
       rect:
         serializedVersion: 2
-        x: 44
-        y: 208
+        x: 243
+        y: 404
         width: 16
         height: 16
       alignment: 0
@@ -152,11 +154,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_2
+      name: snowman_2
       rect:
         serializedVersion: 2
-        x: 364
-        y: 208
+        x: 563
+        y: 404
         width: 16
         height: 16
       alignment: 0
@@ -166,12 +168,12 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_3
+      name: snowman_3
       rect:
         serializedVersion: 2
-        x: 3
-        y: 160
-        width: 24
+        x: 202
+        y: 356
+        width: 18
         height: 33
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -180,81 +182,81 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_4
-      rect:
-        serializedVersion: 2
-        x: 37
-        y: 160
-        width: 24
-        height: 33
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_5
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 160
-        width: 20
-        height: 33
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_6
-      rect:
-        serializedVersion: 2
-        x: 122
-        y: 160
-        width: 20
-        height: 33
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_7
-      rect:
-        serializedVersion: 2
-        x: 161
-        y: 161
-        width: 24
-        height: 33
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_8
-      rect:
-        serializedVersion: 2
-        x: 201
-        y: 161
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_9
+      name: snowman_4
       rect:
         serializedVersion: 2
         x: 242
-        y: 161
+        y: 356
+        width: 18
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: snowman_5
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 356
+        width: 20
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: snowman_6
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 356
+        width: 20
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: snowman_7
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 357
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: snowman_8
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 357
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: snowman_9
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 357
         width: 20
         height: 30
       alignment: 0
@@ -264,11 +266,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_10
+      name: snowman_10
       rect:
         serializedVersion: 2
-        x: 281
-        y: 161
+        x: 480
+        y: 357
         width: 22
         height: 30
       alignment: 0
@@ -278,11 +280,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_11
+      name: snowman_11
       rect:
         serializedVersion: 2
-        x: 320
-        y: 163
+        x: 519
+        y: 359
         width: 23
         height: 27
       alignment: 0
@@ -292,11 +294,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_12
+      name: snowman_12
       rect:
         serializedVersion: 2
-        x: 360
-        y: 163
+        x: 559
+        y: 359
         width: 23
         height: 27
       alignment: 0
@@ -306,13 +308,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_13
+      name: snowman_13
       rect:
         serializedVersion: 2
-        x: 0
-        y: 122
+        x: 199
+        y: 318
         width: 24
-        height: 33
+        height: 29
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -320,81 +322,81 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_14
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 122
-        width: 24
-        height: 33
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_15
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 121
-        width: 23
-        height: 30
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_16
-      rect:
-        serializedVersion: 2
-        x: 121
-        y: 121
-        width: 22
-        height: 30
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_17
-      rect:
-        serializedVersion: 2
-        x: 163
-        y: 120
-        width: 24
-        height: 33
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_18
-      rect:
-        serializedVersion: 2
-        x: 203
-        y: 120
-        width: 24
-        height: 33
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_19
+      name: snowman_14
       rect:
         serializedVersion: 2
         x: 239
-        y: 120
+        y: 318
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: snowman_15
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 317
+        width: 23
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: snowman_16
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 317
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: snowman_17
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 316
+        width: 17
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: snowman_18
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 316
+        width: 17
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: snowman_19
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 316
         width: 25
         height: 32
       alignment: 0
@@ -404,11 +406,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_20
+      name: snowman_20
       rect:
         serializedVersion: 2
-        x: 280
-        y: 119
+        x: 479
+        y: 315
         width: 23
         height: 34
       alignment: 0
@@ -418,11 +420,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_21
+      name: snowman_21
       rect:
         serializedVersion: 2
-        x: 314
-        y: 126
+        x: 513
+        y: 322
         width: 36
         height: 20
       alignment: 0
@@ -432,11 +434,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_22
+      name: snowman_22
       rect:
         serializedVersion: 2
-        x: 354
-        y: 126
+        x: 553
+        y: 322
         width: 36
         height: 20
       alignment: 0
@@ -446,13 +448,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_23
+      name: snowman_23
       rect:
         serializedVersion: 2
-        x: 2
-        y: 80
-        width: 24
-        height: 33
+        x: 201
+        y: 276
+        width: 20
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -460,13 +462,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_24
+      name: snowman_24
       rect:
         serializedVersion: 2
-        x: 38
-        y: 80
-        width: 24
-        height: 33
+        x: 241
+        y: 276
+        width: 20
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -474,11 +476,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_25
+      name: snowman_25
       rect:
         serializedVersion: 2
-        x: 81
-        y: 81
+        x: 280
+        y: 277
         width: 22
         height: 30
       alignment: 0
@@ -488,11 +490,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_26
+      name: snowman_26
       rect:
         serializedVersion: 2
-        x: 121
-        y: 82
+        x: 320
+        y: 278
         width: 22
         height: 29
       alignment: 0
@@ -502,11 +504,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_27
+      name: snowman_27
       rect:
         serializedVersion: 2
-        x: 160
-        y: 80
+        x: 359
+        y: 276
         width: 24
         height: 33
       alignment: 0
@@ -516,11 +518,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_28
+      name: snowman_28
       rect:
         serializedVersion: 2
-        x: 200
-        y: 80
+        x: 399
+        y: 276
         width: 24
         height: 33
       alignment: 0
@@ -530,11 +532,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_29
+      name: snowman_29
       rect:
         serializedVersion: 2
-        x: 241
-        y: 80
+        x: 440
+        y: 276
         width: 22
         height: 33
       alignment: 0
@@ -544,11 +546,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_30
+      name: snowman_30
       rect:
         serializedVersion: 2
-        x: 283
-        y: 80
+        x: 482
+        y: 276
         width: 18
         height: 32
       alignment: 0
@@ -558,11 +560,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_31
+      name: snowman_31
       rect:
         serializedVersion: 2
-        x: 320
-        y: 83
+        x: 519
+        y: 279
         width: 24
         height: 26
       alignment: 0
@@ -572,11 +574,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_32
+      name: snowman_32
       rect:
         serializedVersion: 2
-        x: 360
-        y: 83
+        x: 559
+        y: 279
         width: 24
         height: 26
       alignment: 0
@@ -586,39 +588,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_33
+      name: snowman_33
       rect:
         serializedVersion: 2
-        x: 0
-        y: 41
-        width: 24
-        height: 33
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_34
-      rect:
-        serializedVersion: 2
-        x: 39
-        y: 41
-        width: 24
-        height: 33
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_35
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 41
+        x: 199
+        y: 237
         width: 23
         height: 30
       alignment: 0
@@ -628,11 +602,39 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_36
+      name: snowman_34
       rect:
         serializedVersion: 2
-        x: 121
-        y: 41
+        x: 239
+        y: 237
+        width: 23
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: snowman_35
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 237
+        width: 23
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: snowman_36
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 237
         width: 22
         height: 30
       alignment: 0
@@ -642,13 +644,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_37
+      name: snowman_37
       rect:
         serializedVersion: 2
-        x: 158
-        y: 43
+        x: 357
+        y: 239
         width: 28
-        height: 33
+        height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -656,13 +658,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_38
+      name: snowman_38
       rect:
         serializedVersion: 2
-        x: 198
-        y: 43
+        x: 397
+        y: 239
         width: 28
-        height: 33
+        height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -670,11 +672,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_39
+      name: snowman_39
       rect:
         serializedVersion: 2
-        x: 240
-        y: 41
+        x: 439
+        y: 237
         width: 23
         height: 31
       alignment: 0
@@ -684,11 +686,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_40
+      name: snowman_40
       rect:
         serializedVersion: 2
-        x: 320
-        y: 42
+        x: 519
+        y: 238
         width: 24
         height: 28
       alignment: 0
@@ -698,11 +700,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_41
+      name: snowman_41
       rect:
         serializedVersion: 2
-        x: 360
-        y: 41
+        x: 559
+        y: 237
         width: 23
         height: 30
       alignment: 0
@@ -712,11 +714,39 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_42
+      name: snowman_42
       rect:
         serializedVersion: 2
-        x: 321
-        y: 0
+        x: 199
+        y: 195
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: snowman_43
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 195
+        width: 24
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: snowman_44
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 196
         width: 22
         height: 32
       alignment: 0
@@ -726,11 +756,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: megamansoccer_iceman_sheet_43
+      name: snowman_45
       rect:
         serializedVersion: 2
-        x: 361
-        y: 0
+        x: 560
+        y: 196
         width: 22
         height: 32
       alignment: 0
