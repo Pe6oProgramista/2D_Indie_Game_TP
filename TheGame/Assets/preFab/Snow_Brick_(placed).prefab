@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4257691721899018}
   - component: {fileID: 212674684471904002}
   - component: {fileID: 61994989930352960}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Snow_Brick_(placed)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

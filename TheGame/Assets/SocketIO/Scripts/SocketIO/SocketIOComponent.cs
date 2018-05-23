@@ -310,8 +310,8 @@ namespace SocketIO
 			} catch(SocketIOException ex) {
 				#if SOCKET_IO_DEBUG
 				debugMethod.Invoke(ex.ToString());
-				#endif
-			}
+                #endif
+            }
 		}
 
 		private void OnOpen(object sender, EventArgs e)

@@ -75,7 +75,7 @@ public class GrapplingHook : MonoBehaviour {
                 if (!ropePositions.Contains(hit.point))
                 {
                     // Jump slightly to distance the player a little from the ground after grappling to something.
-                    //transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 2f), ForceMode2D.Impulse);
+                    transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 2f), ForceMode2D.Impulse);
 
                     ropePositions.Add(hit.point);
                     joint.distance = Vector2.Distance(transform.position, hit.point);

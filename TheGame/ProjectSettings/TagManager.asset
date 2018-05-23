@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Grippable
+  - Login Button
+  - Register Button
   layers:
   - Default
   - TransparentFX

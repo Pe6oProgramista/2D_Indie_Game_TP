@@ -11,52 +11,45 @@ public class PlayerController : MonoBehaviour
 
     //jumping variables
     bool grounded = false;
-    float groundCheckRadius = 0.2f;
-    bool canJump = true;
+    bool jumping = false;
+    bool canDoubleJump = true;
+
     public LayerMask groundLayer;
-    public Transform groundCheck;
-    public float jumpHeight;
+    public float jumpSpeed;
+    public bool facingRight = true;
 
     Rigidbody2D myRB;
     Animator myAnim;
-    bool facingRight;
+
     // Use this for initialization
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
         myAnim = GetComponent<Animator>();
-
-        facingRight = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.Space))
+        if(!facingRight)
         {
-            if (grounded)
-            {
-                grounded = false;
-                myAnim.SetBool("isGrounded", grounded);
-                myRB.AddForce(new Vector2(0, jumpHeight));
-                canJump = true;
-            }
-            else if(canJump)
-            {
-                grounded = false;
-                myAnim.SetBool("isGrounded", grounded);
-                myRB.AddForce(new Vector2(0, jumpHeight));
-                canJump = false;
-            }
+            Flip();
+            facingRight = !facingRight;
         }
     }
 
     void FixedUpdate()
     {
+        if (GetComponent<CircleCollider2D>().IsTouchingLayers(groundLayer))
+        {
+            grounded = true;
+            canDoubleJump = false;
+            jumping = false;
+        }
 
-        grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         myAnim.SetBool("isGrounded", grounded);
+        myAnim.SetFloat("verticalSpeed", myRB.velocity.y);
 
+        if (Input.GetKeyDown(KeyCode.Space) && (grounded || canDoubleJump))
+        {
+            Jump();
+        }
+        myAnim.SetBool("isGrounded", grounded);
         myAnim.SetFloat("verticalSpeed", myRB.velocity.y);
 
         float move = 0;
@@ -69,10 +62,6 @@ public class PlayerController : MonoBehaviour
             move = -1;
         }
 
-        myAnim.SetFloat("speed", Mathf.Abs(move));
-
-        myRB.velocity = new Vector2(move * maxSpeed, myRB.velocity.y);
-
         if (move > 0 && !facingRight)
         {
             Flip();
@@ -80,6 +69,25 @@ public class PlayerController : MonoBehaviour
         else if (move < 0 && facingRight)
         {
             Flip();
+        }
+
+        myAnim.SetFloat("speed", Mathf.Abs(move));
+        myRB.velocity = new Vector2(move * maxSpeed, myRB.velocity.y);
+    }
+
+    void Jump()
+    {
+        if(grounded)
+        {
+            jumping = true;
+            grounded = false;
+            myRB.AddForce(new Vector2(myRB.velocity.x, jumpSpeed));
+            canDoubleJump = true;
+        }
+        else if(canDoubleJump)
+        {
+            canDoubleJump = false;
+            myRB.AddForce(new Vector2(myRB.velocity.x, jumpSpeed));
         }
     }
 
