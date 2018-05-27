@@ -7,7 +7,7 @@ TagManager:
   - Grippable
   - Login Button
   - Register Button
-  - Enemy
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -17,10 +17,10 @@ TagManager:
   - UI
   - 
   - 
-  - Ground
-  - Grippable
+  - Block
   - Rope
   - Player
+  - 
   - 
   - 
   - 
