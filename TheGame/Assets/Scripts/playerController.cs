@@ -10,9 +10,9 @@ public class PlayerController : MonoBehaviour
     public float maxSpeed;
 
     //jumping variables
-    bool grounded = false;
-    bool jumping = false;
-    bool canDoubleJump = true;
+    private bool grounded = false;
+    private bool jumping = false;
+    private bool canDoubleJump = true;
 
     public LayerMask groundLayer;
     public float jumpSpeed;
