@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     public float jumpSpeed;
     public bool facingRight = true;
+	private int health = 1;
+
 
     Rigidbody2D myRB;
     Animator myAnim;
@@ -33,8 +36,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+	void Update() {
+
+	}
+
     void FixedUpdate()
     {
+
         if (GetComponent<CircleCollider2D>().IsTouchingLayers(groundLayer))
         {
             grounded = true;
@@ -98,4 +106,12 @@ public class PlayerController : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
+
+	void onDamage(){
+		health--;
+		if (health == 0) {
+			SceneManager.LoadScene(0);
+		}
+	}
+
 }
