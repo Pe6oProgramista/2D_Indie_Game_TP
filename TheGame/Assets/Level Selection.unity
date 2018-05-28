@@ -279,7 +279,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -720,6 +720,10 @@ MonoBehaviour:
   normalSprite: {fileID: 21300006, guid: d1653c0a00f0daa47b3e65eca9c95571, type: 3}
   highlightedSprite: {fileID: 21300014, guid: d1653c0a00f0daa47b3e65eca9c95571, type: 3}
   canvas: {fileID: 183847571}
+  levelButton: {fileID: 1378303371923694, guid: cd62e2db8b3b08d43ac8cf8fef3e770f,
+    type: 2}
+  arrowButton: {fileID: 1835318844844146, guid: 753f04e804c47e042937bfe3006a7e10,
+    type: 2}
 --- !u!114 &1629832342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,6 +768,7 @@ GameObject:
   - component: {fileID: 1661229328}
   - component: {fileID: 1661229327}
   - component: {fileID: 1661229326}
+  - component: {fileID: 1661229330}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -834,3 +839,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1661229330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1661229325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dde4f61c36b8914dac2705daaf8acf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

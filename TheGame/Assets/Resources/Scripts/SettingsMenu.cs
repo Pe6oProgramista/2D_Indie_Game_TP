@@ -39,6 +39,15 @@ public class SettingsMenu : MonoBehaviour {
     {
         audioMixer.SetFloat("volume", volume);
     }
+	
+	public void Setfps(float limit) {
+		ApplicationModel.targetFrameRate = (int)limit;
+	}
+
+    public void Showfps(bool fpsOn)
+    {
+        ApplicationModel.fpsOn = fpsOn;
+    }
 
     public void Quality(int qualityIndex)
     {
