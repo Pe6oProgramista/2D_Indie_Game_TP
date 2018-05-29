@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class LevelsButtonsManager : MonoBehaviour {
 
@@ -23,6 +24,11 @@ public class LevelsButtonsManager : MonoBehaviour {
     private GameObject nextArrow;
 
     void Start () {
+
+        if (SceneManager.GetActiveScene().name.Equals("Leaderboard"))
+        {
+            canvas.transform.GetChild(3).gameObject.SetActive(false);
+        }
         panelSize = GetComponent<RectTransform>().rect.size;
 
         FileInfo[] files = new DirectoryInfo("Assets\\Resources\\Sprites\\Levels").GetFiles();
@@ -60,10 +66,18 @@ public class LevelsButtonsManager : MonoBehaviour {
 
             button.GetComponentInChildren<Text>().text = (i + 1).ToString("00");
 
-            string levelNumber = (i + 1).ToString();
+            int levelNumber = i + 1;
 
-            button.GetComponent<Button>().onClick.AddListener(delegate { GenerateButtonLevel(levelNumber); });
-            button.GetComponent<Button>().onClick.AddListener(delegate { canvas.OnSelect(6); });
+            if (SceneManager.GetActiveScene().name.Equals("Level Selection"))
+            {
+                button.GetComponent<Button>().onClick.AddListener(delegate { GenerateLevel(levelNumber); });
+                button.GetComponent<Button>().onClick.AddListener(delegate { canvas.OnSelect(6); });
+            }
+            else
+            {
+                button.GetComponent<Button>().onClick.AddListener(delegate { GenerateLevelLeaderboard(levelNumber); });
+                button.GetComponent<Button>().onClick.AddListener(delegate { canvas.OnSelect(8); });
+            }
         }
     }
 
@@ -98,10 +112,15 @@ public class LevelsButtonsManager : MonoBehaviour {
         nextArrow.GetComponentInChildren<Button>().interactable = (pages < 2) ? false : true;
     }
 
-    public void GenerateButtonLevel(string levelNumber)
+    public void GenerateLevel(int levelNumber)
     {
         // TODO: Sending request for relevant level file
         ApplicationModel.map = (Texture2D)Resources.Load("Sprites\\Levels\\Level" + levelNumber);
+    }
+
+    public void GenerateLevelLeaderboard(int levelNumber)
+    {
+        ApplicationModel.leaderboardLevl = levelNumber;
     }
 
     public void ChangePage(int pageNumber)
@@ -110,6 +129,7 @@ public class LevelsButtonsManager : MonoBehaviour {
         if (page == 0)
         {
             backArrow.GetComponentInChildren<Button>().interactable = false;
+            nextArrow.GetComponentInChildren<Button>().interactable = true;
         }
         else if (page > 0)
         {

@@ -1,16 +1,28 @@
 
 var express = require('express');
 var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+const PORT = process.env.PORT || 5000;
+const path = require('path');
+//var http = require('http').Server(app);
+//var url = require('url');
 
+
+
+
+
+
+
+
+/*var io = require('socket.io')(http);
 io.on('connection', function (socket) {
     console.log('connected');
 });
 
 http.listen(process.env.PORT || 3000, function () {
     console.log('listening on port 3000');
-});
+});*/
+
+
 
 /*const express = require('express');
 const path = require('path');

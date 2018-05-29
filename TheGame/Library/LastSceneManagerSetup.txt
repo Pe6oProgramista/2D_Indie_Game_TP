@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Level Selection.unity
+- path: Assets/Register.unity
   isLoaded: 1
   isActive: 1
