@@ -372,6 +372,51 @@ app.post('/:user/leaderboards/:levelNumber', function(req, res) {
 											});
 									});
 								}
+								else {
+									var userId = 0;
+									var pool3 = new pg.Pool(config);
+									var selectQuery = {
+										text: 'SELECT "Id" FROM "Users"' + 
+												'WHERE "AuthKey" = $1',
+										values: [req.user],
+									}
+									pool3.connect(function(err, client, done) {
+										if (err) {
+											return console.error('error fetching client from pool', err);
+										}
+										console.log('Connected to postgres! Getting schemas...');
+
+										client
+											.query(selectQuery, function(err, result) {
+												if(err) {
+													return console.error('error running query10', err);
+												}
+												userId = result.rows[0].Id;
+												done();
+											});
+									});
+									
+									var pool4 = new pg.Pool(config);
+									var insertQuery = {
+										text: 'INSERT INTO "Leaderboard" ' + 
+												'VALUES($1, $2, $3)',
+										values: [userId, req.levelNumber, newScore],
+									}
+									pool4.connect(function(err, client, done) {
+										if (err) {
+											return console.error('error fetching client from pool', err);
+										}
+										console.log('Connected to postgres! Getting schemas...');
+
+										client
+											.query(insertQuery, function(err, result) {
+												if(err) {
+													return console.error('error running query10', err);
+												}
+												done();
+											});
+									});
+								}
 								
 								var returnResult = "";
 								result.rows.forEach((row, index) => {

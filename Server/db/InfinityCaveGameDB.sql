@@ -1,9 +1,10 @@
 create table "Users"(
 	"Id" SERIAL PRIMARY KEY,
 	"Username" VARCHAR(20) NOT NULL,
-	"Password" VARCHAR(40) NOT NULL,
+	"Email" VARCHAR(30) NOT NULL,
+	"Password" VARCHAR(50) NOT NULL,
 	"LastLevel" INTEGER,
-	"AuthKey" VARCHAR(40)
+	"AuthKey" VARCHAR(50)
 );
 
 create table "Leaderboard"(
