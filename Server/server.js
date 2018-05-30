@@ -376,7 +376,7 @@ app.post('/:user/leaderboards/:levelNumber', function(req, res) {
 									var userId = 0;
 									var pool3 = new pg.Pool(config);
 									var selectQuery1 = {
-										text: 'SELECT "Id" FROM "Users"' + 
+										text: 'SELECT * FROM "Users"' + 
 												'WHERE "AuthKey" = $1',
 										values: [req.user],
 									}
@@ -392,6 +392,7 @@ app.post('/:user/leaderboards/:levelNumber', function(req, res) {
 													return console.error('error running query10', err);
 												}
 												userId = result.rows[0].Id;
+												console.log(result.rows[0].Username);
 												done();
 											});
 									});
