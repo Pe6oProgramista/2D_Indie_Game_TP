@@ -417,6 +417,28 @@ app.post('/:user/leaderboards/:levelNumber', function(req, res) {
 												done();
 											});
 									});
+									
+									var pool5 = new pg.Pool(config);
+									var updateQuery2 = {
+										text: 'UPDATE "Users" ' + 
+												'SET "LastLevel" = $1 ' +
+												'WHERE "AuthKey" = $2 ',
+										values: [req.levelNumber, req.user],
+									}
+									pool5.connect(function(err, client, done) {
+										if (err) {
+											return console.error('error fetching client from pool', err);
+										}
+										console.log('Connected to postgres! Getting schemas...');
+
+										client
+											.query(updateQuery2, function(err, result) {
+												if(err) {
+													return console.error('error running query10', err);
+												}
+												done();
+											});
+									});
 								}
 								
 								var returnResult = "";
