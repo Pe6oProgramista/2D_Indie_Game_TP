@@ -375,7 +375,7 @@ app.post('/:user/leaderboards/:levelNumber', function(req, res) {
 								else {
 									var userId = 0;
 									var pool3 = new pg.Pool(config);
-									var selectQuery = {
+									var selectQuery1 = {
 										text: 'SELECT "Id" FROM "Users"' + 
 												'WHERE "AuthKey" = $1',
 										values: [req.user],
@@ -387,7 +387,7 @@ app.post('/:user/leaderboards/:levelNumber', function(req, res) {
 										console.log('Connected to postgres! Getting schemas...');
 
 										client
-											.query(selectQuery, function(err, result) {
+											.query(selectQuery1, function(err, result) {
 												if(err) {
 													return console.error('error running query10', err);
 												}
@@ -402,6 +402,7 @@ app.post('/:user/leaderboards/:levelNumber', function(req, res) {
 												'VALUES($1, $2, $3)',
 										values: [userId, req.levelNumber, newScore],
 									}
+									console.log(userId);
 									pool4.connect(function(err, client, done) {
 										if (err) {
 											return console.error('error fetching client from pool', err);
