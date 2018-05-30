@@ -4,7 +4,7 @@ var express = require('express'),
 	tokenGenerator = require('uuid-token-generator'),
 	pg = require('pg'),
 	app = express();
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 5000;
 
 const config = {
 	// host: 'localhost',
@@ -12,7 +12,7 @@ const config = {
     // user: 'pepy',
     // database: 'InfinityCaveGame',
     // password: 'pepyypep',
-	connectionString: "postgres://pepy:pepyypep@localhost:5000/InfinityCaveGame",//process.env.DATABASE_URL, //
+	connectionString: process.env.DATABASE_URL, //"postgres://pepy:pepyypep@localhost:5000/InfinityCaveGame",//
 };
 
 app.use(bodyParser.json());
