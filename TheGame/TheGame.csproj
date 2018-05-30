@@ -379,6 +379,7 @@
     <Compile Include="Assets\Resources\SocketIO\WebsocketSharp\WebSocketFrame.cs" />
     <Compile Include="Assets\Resources\SocketIO\WebsocketSharp\WebSocketState.cs" />
     <Compile Include="Assets\Resources\SocketIO\WebsocketSharp\WebSocketStream.cs" />
+    <Compile Include="Assets\Stoptimer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\SocketIO\JSONObject\readme.txt" />
