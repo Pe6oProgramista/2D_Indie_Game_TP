@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4161663336709772}
   - component: {fileID: 212699294337116180}
   - component: {fileID: 95632471604445770}
+  - component: {fileID: 58885499690514280}
   m_Layer: 0
   m_Name: Checkpoint
   m_TagString: Untagged
@@ -41,6 +42,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0.18, z: 0}
+--- !u!58 &58885499690514280
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1370682098276082}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.56
 --- !u!95 &95632471604445770
 Animator:
   serializedVersion: 3

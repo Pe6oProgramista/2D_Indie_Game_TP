@@ -14,7 +14,7 @@ public class Login : MonoBehaviour {
     private string Username = "";
     private string Password = "";
 
-    private static readonly string URL = "https://grapplinghook-game-server.herokuapp.com/login";//"http://localhost:3000/login";//
+    private static readonly string URL = "https://grapplinghook-game-server.herokuapp.com/" + "login";
 
     void Start()
     {
@@ -29,7 +29,6 @@ public class Login : MonoBehaviour {
 
     void Action()
     {
-        //Fill in all fields
         if (Username == "" || Password == "")
         {
             Debug.Log("Fill all");

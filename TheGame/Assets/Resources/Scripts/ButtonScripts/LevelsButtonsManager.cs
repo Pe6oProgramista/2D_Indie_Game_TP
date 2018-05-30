@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
+using System.Linq;
 
 public class LevelsButtonsManager : MonoBehaviour {
 
@@ -28,29 +29,11 @@ public class LevelsButtonsManager : MonoBehaviour {
 
     private bool inFirst = false;
 
-    private static readonly string URL = "https://grapplinghook-game-server.herokuapp.com/levels/" + ApplicationModel.authenticationToken;
+    private static readonly string URL = "https://grapplinghook-game-server.herokuapp.com/" + "levels/" + ApplicationModel.authenticationToken;
 
     void Start () {
 
         Action();
-
-        if (SceneManager.GetActiveScene().name.Equals("Leaderboard"))
-        {
-            canvas.transform.GetChild(3).gameObject.SetActive(false);
-        }
-        panelSize = GetComponent<RectTransform>().rect.size;
-
-        FileInfo[] files = new DirectoryInfo("Assets\\Resources\\Sprites\\Levels").GetFiles();
-        foreach(FileInfo file in files)
-        {
-            if(file.Extension.Contains("png") || file.Extension.Contains("jpg"))
-            {
-                levelsCount++;
-            }
-        }
-        pages = (levelsCount % 16 == 0) ? levelsCount / 16 : levelsCount / 16 + 1;
-        GenerateArrows();
-        GenerateButtons();
     }
 
     private void GenerateButtons()
@@ -129,8 +112,7 @@ public class LevelsButtonsManager : MonoBehaviour {
 
     public void GenerateLevel(int levelNumber)
     {
-        // TODO: Sending request for relevant level file
-        ApplicationModel.map = (Texture2D)Resources.Load("Sprites\\Levels\\Level" + levelNumber);
+        ApplicationModel.level = levelNumber;
     }
 
     public void GenerateLevelLeaderboard(int levelNumber)
@@ -160,7 +142,7 @@ public class LevelsButtonsManager : MonoBehaviour {
         WWW www;
         www = new WWW(URL);
         StartCoroutine(WaitForRequest(www));
-        StartCoroutine(DoLast());
+        Debug.Log(userLastLevel);
     }
 
     private IEnumerator WaitForRequest(WWW data)
@@ -177,12 +159,28 @@ public class LevelsButtonsManager : MonoBehaviour {
             Debug.Log(result[0]);
             if (result[0].Contains("Success"))
             {
-                if(result[1].Contains("null"))
+                userLastLevel = 0;
+                if (!result[1].Contains("null"))
                 {
-                    userLastLevel = 0;
+                    userLastLevel = int.Parse(new String(result[1].TakeWhile(Char.IsDigit).ToArray()));
                 }
-                else
-                    userLastLevel = Int32.Parse(result[1].Trim().Substring(1, result[1].Length - 2));
+                if (SceneManager.GetActiveScene().name.Equals("Leaderboard"))
+                {
+                    canvas.transform.GetChild(3).gameObject.SetActive(false);
+                }
+                panelSize = GetComponent<RectTransform>().rect.size;
+
+                FileInfo[] files = new DirectoryInfo("Assets\\Resources\\Sprites\\Levels").GetFiles();
+                foreach (FileInfo file in files)
+                {
+                    if (file.Extension.Contains("png") || file.Extension.Contains("jpg"))
+                    {
+                        levelsCount++;
+                    }
+                }
+                pages = (levelsCount % 16 == 0) ? levelsCount / 16 : levelsCount / 16 + 1;
+                GenerateArrows();
+                GenerateButtons();
             }
             else
             {
@@ -190,11 +188,5 @@ public class LevelsButtonsManager : MonoBehaviour {
             }
         }
         inFirst = false;
-    }
-    IEnumerator DoLast()
-    {
-
-        while (inFirst)
-            yield return new WaitForSeconds(0.1f);
     }
 }

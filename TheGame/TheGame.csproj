@@ -290,6 +290,7 @@
     <Compile Include="Assets\Resources\Scripts\ButtonScripts\ButtonOptions.cs" />
     <Compile Include="Assets\Resources\Scripts\ButtonScripts\LevelsButtonsManager.cs" />
     <Compile Include="Assets\Resources\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Resources\Scripts\Checkpoint.cs" />
     <Compile Include="Assets\Resources\Scripts\FramerateLimiter.cs" />
     <Compile Include="Assets\Resources\Scripts\LeaderboardGenerator.cs" />
     <Compile Include="Assets\Resources\Scripts\LevelGenerator.cs" />

@@ -15,7 +15,7 @@ public class LevelGenerator : MonoBehaviour {
     private Vector2 offset;
 
     void Start () {
-        map = ApplicationModel.map;
+        map = (Texture2D)Resources.Load("Sprites\\Levels\\Level" + ApplicationModel.level);
         offset = new Vector2(background.bounds.center.x - background.bounds.size.x / 2, background.bounds.center.y - background.bounds.size.y / 2);
         for (int x = 0; x < map.width; x++)
         {

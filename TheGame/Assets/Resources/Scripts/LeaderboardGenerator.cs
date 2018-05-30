@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using System;
+using System.Linq;
 
 public class LeaderboardGenerator : MonoBehaviour {
 
@@ -16,39 +18,23 @@ public class LeaderboardGenerator : MonoBehaviour {
     private GameObject backArrow;
     private GameObject nextArrow;
 
-    private string[] usernames;
-    private string[] highScores;
+    private Dictionary<string, string> userScore;
 
-    private bool inFirst = false;
-
-    private static readonly string URL = "https://grapplinghook-game-server.herokuapp.com/leaderboard/" + ApplicationModel.leaderboardLevl;
+    private static readonly string URL = "https://grapplinghook-game-server.herokuapp.com/" + ApplicationModel.authenticationToken + "/leaderboard/" + ApplicationModel.leaderboardLevl;
 
     void Start () {
         panelSize = GetComponent<RectTransform>().rect.size;
 
         transform.GetChild(0).GetComponent<Text>().text = "Level" + ApplicationModel.leaderboardLevl;
 
-        Action();
-        // Set scoreCount from request
-        scoresCount = 10;
-        usernames = new string[10];
-        highScores = new string[10];
-        for(int i = 0; i < scoresCount; i++)
-        {
-            usernames[i] = i.ToString();
-            highScores[i] = (i + 1).ToString();
-        }
+        userScore = new Dictionary<string, string>();
 
-        // 5 on page
-        // 40 distance  190 -90
-        pages = (scoresCount % 5 == 0) ? scoresCount / 5 : scoresCount / 5 + 1;
-        GenerateArrows();
-        GenerateLeaderboard();
+        Action();
     }
 
     private void GenerateLeaderboard()
     {
-        int statement = (page == pages - 1) ? (page * 5) + (scoresCount - (page * 5)) : (page + 1) * 5;
+        int statement = (page >= pages - 1) ? ((page * 5) + (scoresCount - (page * 5))) : ((page + 1) * 5);
 
         for (int i = page * 5; i < statement; i++)
         {
@@ -56,8 +42,8 @@ public class LeaderboardGenerator : MonoBehaviour {
 
             field.name = "Field " + (i + 1);
 
-            field.transform.GetChild(0).GetComponent<Text>().text = usernames[i];
-            field.transform.GetChild(1).GetComponent<Text>().text = highScores[i];
+            field.transform.GetChild(0).GetComponent<Text>().text = userScore.Keys.ElementAt(i);
+            field.transform.GetChild(1).GetComponent<Text>().text = userScore.Values.ElementAt(i);
 
             RectTransform rt = field.GetComponent<RectTransform>();
 
@@ -119,12 +105,10 @@ public class LeaderboardGenerator : MonoBehaviour {
         WWW www;
         www = new WWW(URL);
         StartCoroutine(WaitForRequest(www));
-        StartCoroutine(DoLast());
     }
 
     private IEnumerator WaitForRequest(WWW data)
     {
-        inFirst = true;
         yield return data;
         if (data.error != null)
         {
@@ -132,23 +116,29 @@ public class LeaderboardGenerator : MonoBehaviour {
         }
         else
         {
-            string[] result = data.text.Split(',');
-            Debug.Log(result[0]);
+            string[] result = data.text.Split(' ');
             if (result[0].Contains("Success"))
             {
-                
+                scoresCount = 0;
+                if (result[1].Contains("..."))
+                {
+                    string[] resultData = result[1].Split(new string[] { "..." }, StringSplitOptions.None);
+                    foreach (string field in resultData)
+                    {
+                        string[] f = field.Split(new string[] { ".." }, StringSplitOptions.None);
+                        userScore.Add(f[0], f[1]);
+                    }
+                    scoresCount = userScore.Count;
+                }
+
+                pages = (scoresCount % 5 == 0) ? scoresCount / 5 : scoresCount / 5 + 1;
+                GenerateArrows();
+                GenerateLeaderboard();
             }
             else
             {
                 Debug.Log(result[1]);
             }
         }
-        inFirst = false;
-    }
-    IEnumerator DoLast()
-    {
-
-        while (inFirst)
-            yield return new WaitForSeconds(0.1f);
     }
 }

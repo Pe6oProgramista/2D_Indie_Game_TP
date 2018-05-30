@@ -18,6 +18,14 @@ public class CameraController : MonoBehaviour {
         halfExtents = new Vector2(x, y);
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            GetComponent<ButtonOptions>().Back();
+        }
+    }
+
     void FixedUpdate()
     {
         Vector3 desiredPosition = new Vector3(target.position.x, target.position.y, transform.position.z);
