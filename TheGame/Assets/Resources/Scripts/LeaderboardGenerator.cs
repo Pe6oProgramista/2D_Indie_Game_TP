@@ -19,11 +19,16 @@ public class LeaderboardGenerator : MonoBehaviour {
     private string[] usernames;
     private string[] highScores;
 
+    private bool inFirst = false;
+
+    private static readonly string URL = "https://grapplinghook-game-server.herokuapp.com/leaderboard/" + ApplicationModel.leaderboardLevl;
+
     void Start () {
         panelSize = GetComponent<RectTransform>().rect.size;
 
         transform.GetChild(0).GetComponent<Text>().text = "Level" + ApplicationModel.leaderboardLevl;
 
+        Action();
         // Set scoreCount from request
         scoresCount = 10;
         usernames = new string[10];
@@ -107,5 +112,43 @@ public class LeaderboardGenerator : MonoBehaviour {
         }
         DestroyAllChildren();
         GenerateLeaderboard();
+    }
+
+    void Action()
+    {
+        WWW www;
+        www = new WWW(URL);
+        StartCoroutine(WaitForRequest(www));
+        StartCoroutine(DoLast());
+    }
+
+    private IEnumerator WaitForRequest(WWW data)
+    {
+        inFirst = true;
+        yield return data;
+        if (data.error != null)
+        {
+            Debug.Log("There was an error sending request: " + data.error);
+        }
+        else
+        {
+            string[] result = data.text.Split(',');
+            Debug.Log(result[0]);
+            if (result[0].Contains("Success"))
+            {
+                
+            }
+            else
+            {
+                Debug.Log(result[1]);
+            }
+        }
+        inFirst = false;
+    }
+    IEnumerator DoLast()
+    {
+
+        while (inFirst)
+            yield return new WaitForSeconds(0.1f);
     }
 }

@@ -113,6 +113,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &44147960 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1790867121150400, guid: f788f30d667c1164eb04cde22670d239,
+    type: 2}
+  m_PrefabInternal: {fileID: 1715745827}
+--- !u!114 &44147961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 44147960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b77c015d4b1d5448aa41460238a25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IUsername: {fileID: 1203352422}
+  IPassword: {fileID: 1898945346}
 --- !u!1 &187150591
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,7 +616,7 @@ GameObject:
   - component: {fileID: 1025935899}
   - component: {fileID: 1025935903}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Login Fields
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1072,6 +1090,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1025935902}
     m_Modifications:
+    - target: {fileID: 114941854434000534, guid: f788f30d667c1164eb04cde22670d239,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224907504836187996, guid: f788f30d667c1164eb04cde22670d239,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -1209,6 +1232,11 @@ Prefab:
     - target: {fileID: 1790867121150400, guid: f788f30d667c1164eb04cde22670d239, type: 2}
       propertyPath: m_TagString
       value: Login Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 114941854434000534, guid: f788f30d667c1164eb04cde22670d239,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f788f30d667c1164eb04cde22670d239, type: 2}

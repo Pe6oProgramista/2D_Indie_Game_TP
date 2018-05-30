@@ -4,8 +4,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Threading;
 
-public class ButtonOptions : MonoBehaviour
-{
+public class ButtonOptions : MonoBehaviour {
     private int sceneIndex;
     private Animator animator;
 

@@ -2,6 +2,7 @@
 using UnityEngine;
 
 public class ApplicationModel {
+	static public string URL = "https://grapplinghook-game-server.herokuapp.com/";//"http://localhost:3000/";
     static public string authenticationToken = "";
 
     static public bool fpsOn = false;

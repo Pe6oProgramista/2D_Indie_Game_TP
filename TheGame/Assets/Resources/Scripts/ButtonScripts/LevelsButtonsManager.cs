@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System;
 
 public class LevelsButtonsManager : MonoBehaviour {
 
@@ -18,12 +20,19 @@ public class LevelsButtonsManager : MonoBehaviour {
 
     private int page = 0;
     private int levelsCount = 0;
+    private int userLastLevel = 0;
     private Vector2 panelSize;
     private float pages;
     private GameObject backArrow;
     private GameObject nextArrow;
 
+    private bool inFirst = false;
+
+    private static readonly string URL = "https://grapplinghook-game-server.herokuapp.com/levels/" + ApplicationModel.authenticationToken;
+
     void Start () {
+
+        Action();
 
         if (SceneManager.GetActiveScene().name.Equals("Leaderboard"))
         {
@@ -70,13 +79,19 @@ public class LevelsButtonsManager : MonoBehaviour {
 
             if (SceneManager.GetActiveScene().name.Equals("Level Selection"))
             {
-                button.GetComponent<Button>().onClick.AddListener(delegate { GenerateLevel(levelNumber); });
-                button.GetComponent<Button>().onClick.AddListener(delegate { canvas.OnSelect(6); });
+                    button.GetComponent<Button>().onClick.AddListener(delegate { GenerateLevel(levelNumber); });
+                    button.GetComponent<Button>().onClick.AddListener(delegate { canvas.OnSelect(6); });
             }
             else
             {
-                button.GetComponent<Button>().onClick.AddListener(delegate { GenerateLevelLeaderboard(levelNumber); });
-                button.GetComponent<Button>().onClick.AddListener(delegate { canvas.OnSelect(8); });
+                    button.GetComponent<Button>().onClick.AddListener(delegate { GenerateLevelLeaderboard(levelNumber); });
+                    button.GetComponent<Button>().onClick.AddListener(delegate { canvas.OnSelect(8); });
+            }
+
+            if(i > userLastLevel)
+            {
+                button.GetComponent<Button>().interactable = false;
+                button.GetComponent<ButtonAnimation>().enabled = false;
             }
         }
     }
@@ -138,5 +153,48 @@ public class LevelsButtonsManager : MonoBehaviour {
         }
         DestroyAllChildren();
         GenerateButtons();
+    }
+
+    void Action()
+    {
+        WWW www;
+        www = new WWW(URL);
+        StartCoroutine(WaitForRequest(www));
+        StartCoroutine(DoLast());
+    }
+
+    private IEnumerator WaitForRequest(WWW data)
+    {
+        inFirst = true;
+        yield return data;
+        if (data.error != null)
+        {
+            Debug.Log("There was an error sending request: " + data.error);
+        }
+        else
+        {
+            string[] result = data.text.Split(',');
+            Debug.Log(result[0]);
+            if (result[0].Contains("Success"))
+            {
+                if(result[1].Contains("null"))
+                {
+                    userLastLevel = 0;
+                }
+                else
+                    userLastLevel = Int32.Parse(result[1].Trim().Substring(1, result[1].Length - 2));
+            }
+            else
+            {
+                Debug.Log(result[1]);
+            }
+        }
+        inFirst = false;
+    }
+    IEnumerator DoLast()
+    {
+
+        while (inFirst)
+            yield return new WaitForSeconds(0.1f);
     }
 }
