@@ -391,8 +391,8 @@ app.post('/:user/leaderboards/:levelNumber', function(req, res) {
 												if(err) {
 													return console.error('error running query10', err);
 												}
-												userId = result.rows[0].Id;
-												console.log(result.rows[0].Id);
+												userId += result.rows[0].Id;
+												console.log("z" + result.rows[0].Id);
 												console.log(result.rows[0].Username);
 												done();
 											});
