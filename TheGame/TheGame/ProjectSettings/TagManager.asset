@@ -9,6 +9,7 @@ TagManager:
   - Register Button
   - Ground
   - Final
+  - Enemy
   layers:
   - Default
   - TransparentFX
