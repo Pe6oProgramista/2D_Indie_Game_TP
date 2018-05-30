@@ -65,6 +65,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnBecameInvisible()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag.Equals("Enemy"))
