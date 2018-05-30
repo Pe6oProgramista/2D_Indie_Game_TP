@@ -142,6 +142,7 @@
      <Compile Include="Assets\Resources\SocketIO\WebsocketSharp\WebSocketFrame.cs" />
      <Compile Include="Assets\Resources\SocketIO\WebsocketSharp\WebSocketState.cs" />
      <Compile Include="Assets\Resources\SocketIO\WebsocketSharp\WebSocketStream.cs" />
+     <Compile Include="Assets\Stoptimer.cs" />
      <None Include="Assets\Resources\SocketIO\JSONObject\readme.txt" />
      <None Include="Assets\Resources\SocketIO\Readme.txt" />
  <Reference Include="UnityEngine.UI">
