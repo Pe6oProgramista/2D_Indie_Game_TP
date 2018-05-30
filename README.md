@@ -3,7 +3,7 @@ Infinity cave
 
 1.Subject-  a game built through Unity. 
 
-2. Аuthor – Petur Milev and Valeri Tzvetanov from 11b.
+2. Аuthor – Peter Milev and Valeri Tzvetanov from 11b.
 
 3.Manager – Kiril Mitov
 
