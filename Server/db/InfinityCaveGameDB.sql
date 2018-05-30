@@ -9,7 +9,7 @@ create table "Users"(
 create table "Leaderboard"(
 	"UserId" integer not null,
 	"LevelNumber" integer not null,
-	"Score" numeric(5,2) not null,
+	"Score" VARCHAR(15) not null,
 	
 	PRIMARY KEY( "UserId", "LevelNumber" ),
 	FOREIGN KEY ("UserId") REFERENCES "Users"("Id")

@@ -4,7 +4,7 @@ var express = require('express'),
 	tokenGenerator = require('uuid-token-generator'),
 	pg = require('pg'),
 	app = express();
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 3000;
 
 const config = {
 	// host: 'localhost',
@@ -12,7 +12,7 @@ const config = {
     // user: 'pepy',
     // database: 'InfinityCaveGame',
     // password: 'pepyypep',
-	connectionString: process.env.DATABASE_URL, //"postgres://pepy:pepyypep@localhost:5000/InfinityCaveGame",//
+	connectionString: "postgres://pepy:pepyypep@localhost:5000/InfinityCaveGame",//process.env.DATABASE_URL, //
 };
 
 app.use(bodyParser.json());
@@ -65,7 +65,7 @@ app.post('/register', function(req, res) {
 						client
 							.query(insertQuery, function(err, result) {
 								if(err) {
-									return console.error('error running query2', err);
+									return console.error('error running query1', err);
 								}
 								console.log("Account added!");
 								done();
@@ -101,7 +101,7 @@ app.post('/login', function(req, res) {
 		client
 			.query(query, function(err, result) {
 				if(err) {
-					return console.error('error running query', err);
+					return console.error('error running query2', err);
 				}
 				
 				var count = result.rowCount;
@@ -126,7 +126,7 @@ app.post('/login', function(req, res) {
 						client
 							.query(updateQuery, function(err, result) {
 								if(err) {
-									return console.error('error running query2', err);
+									return console.error('error running query3', err);
 								}
 								console.log("Loged in!");
 								done();
@@ -164,7 +164,7 @@ app.get('/levels/:user', function(req, res) {
 		client
 			.query(query, function(err, result) {
 				if(err) {
-					return console.error('error running query', err);
+					return console.error('error running query4', err);
 				}
 				
 				var count = result.rowCount;
@@ -186,7 +186,7 @@ app.get('/levels/:user', function(req, res) {
 						client
 							.query(getQuery, function(err, result) {
 								if(err) {
-									return console.error('error running query2', err);
+									return console.error('error running query5', err);
 								}
 								
 								res.send(['Success', result.rows[0].LastLevel]);
@@ -201,13 +201,195 @@ app.get('/levels/:user', function(req, res) {
 	pool.end();
 });
 
+app.param('user', function(req, res, next, user) {
+    req.user = user;
+    next();
+});
+
 app.param('levelNumber', function(req, res, next, levelNumber) {
     req.levelNumber = levelNumber;
     next();
 });
 
-app.get('/leaderboard/:levelNumber', function(req, res) {
+app.get('/:user/leaderboard/:levelNumber', function(req, res) {
 	console.log('Level number: ' + req.levelNumber);
+	
+	var query = {
+		text: 'SELECT COUNT(1) FROM "Users" WHERE "AuthKey" = $1',
+		values: [req.user],
+	}
+	
+	var pool = new pg.Pool(config);
+	
+	pool.connect(function(err, client, done) {
+		if (err) {
+			return console.error('error fetching client from pool', err);
+		}
+	    console.log('Connected to postgres! Getting schemas...');
+
+		client
+			.query(query, function(err, result) {
+				if(err) {
+					return console.error('error running query6', err);
+				}
+				
+				var count = result.rowCount;
+				if(count == 0) {
+					res.send(['Failure', 'Connection error!']);
+				}
+				else {
+					var pool2 = new pg.Pool(config);
+					var getQuery = {
+						text: 'SELECT "Username", "Score" FROM "Users" ' + 
+								'INNER JOIN "Leaderboard" ON "Users"."Id" = "Leaderboard"."UserId"' +
+								'ORDER BY "Score" DESC;',
+					}
+					pool2.connect(function(err, client, done) {
+						if (err) {
+							return console.error('error fetching client from pool', err);
+						}
+						console.log('Connected to postgres! Getting schemas...');
+
+						client
+							.query(getQuery, function(err, result) {
+								if(err) {
+									return console.error('error running query7', err);
+								}
+								
+								var returnResult = "";
+								result.rows.forEach((row, index) => {
+									returnResult += row.Username + "..";
+									returnResult += row.Score;
+									if(index < result.rowCount - 1) returnResult += "...";
+								})
+								console.log('Success ' + returnResult);
+								res.send('Success ' + returnResult);
+								done();
+							});
+					});
+				}
+				
+				done();
+			});
+	});
+	pool.end();
+});
+
+app.param('user', function(req, res, next, user) {
+    req.user = user;
+    next();
+});
+
+app.param('levelNumber', function(req, res, next, levelNumber) {
+    req.levelNumber = levelNumber;
+    next();
+});
+
+app.post('/:user/leaderboards/:levelNumber', function(req, res) {
+	console.log('Level number: ' + req.levelNumber);
+	
+	var newScore = req.body['data'];
+	
+	var query = {
+		text: 'SELECT COUNT(1) FROM "Users" WHERE "AuthKey" = $1',
+		values: [req.user],
+	}
+	
+	var pool = new pg.Pool(config);
+	
+	pool.connect(function(err, client, done) {
+		if (err) {
+			return console.error('error fetching client from pool', err);
+		}
+	    console.log('Connected to postgres! Getting schemas...');
+
+		client
+			.query(query, function(err, result) {
+				if(err) {
+					return console.error('error running query8', err);
+				}
+				
+				var count = result.rowCount;
+				if(count == 0) {
+					res.send(['Failure', 'Connection error!']);
+				}
+				else {
+					var pool2 = new pg.Pool(config);
+					var getQuery = {
+						text: 'SELECT * FROM "Users"' + 
+								'INNER JOIN "Leaderboard" ON "Users"."Id" = "Leaderboard"."UserId"' +
+								'WHERE "Users"."AuthKey" = $1',  
+						values: [req.user],
+					}
+					
+					pool2.connect(function(err, client, done) {
+						if (err) {
+							return console.error('error fetching client from pool', err);
+						}
+						console.log('Connected to postgres! Getting schemas...');
+
+						client
+							.query(getQuery, function(err, result) {
+								if(err) {
+									return console.error('error running query9', err);
+								}
+								
+								if(result.rowCount > 0) {
+									var userId = result.rows[0].UserId;
+									var score = result.rows[0].Score;
+									var finalScore = "";
+									if(parseInt(score.split(":")[0]) == parseInt(newScore.split(":")[0])) {
+										if(parseInt(score.split(":")[1].split(".")[0]) > parseInt(newScore.split(":")[1].split(".")[0])) {
+											finalScore = score;
+										}
+										else {
+											finalScore = newScore;
+										}
+									}
+									else {
+										finalScore = (parseInt(score.split(":")[0]) > parseInt(newScore.split(":")[0])) ? score : newScore;
+									 }
+									
+									var pool3 = new pg.Pool(config);
+									var updateQuery = {
+										text: 'UPDATE "Leaderboard" ' + 
+												'SET "Score" = $1 ' +
+												'WHERE "UserId" = $2',
+										values: [finalScore, userId],
+									}
+									pool3.connect(function(err, client, done) {
+										if (err) {
+											return console.error('error fetching client from pool', err);
+										}
+										console.log('Connected to postgres! Getting schemas...');
+
+										client
+											.query(updateQuery, function(err, result) {
+												if(err) {
+													return console.error('error running query10', err);
+												}
+												done();
+											});
+									});
+								}
+								
+								var returnResult = "";
+								result.rows.forEach((row, index) => {
+									returnResult += row.Username + "..";
+									returnResult += row.Score;
+									if(index < result.rowCount - 1) returnResult += "...";
+								})
+								console.log('Success ' + returnResult);
+								res.send('Success ' + returnResult);
+								done();
+							});
+					});
+				}
+				
+				done();
+			});
+	});
+	pool.end();
 });
 
 app.listen(port, function() {
