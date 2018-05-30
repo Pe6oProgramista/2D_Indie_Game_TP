@@ -318,8 +318,8 @@ app.post('/:user/leaderboards/:levelNumber', function(req, res) {
 					var getQuery = {
 						text: 'SELECT * FROM "Users"' + 
 								'INNER JOIN "Leaderboard" ON "Users"."Id" = "Leaderboard"."UserId"' +
-								'WHERE "Users"."AuthKey" = $1',  
-						values: [req.user],
+								'WHERE "Users"."AuthKey" = $1 AND "LevelNumber" = $2',  
+						values: [req.user, req.levelNumber],
 					}
 					
 					pool2.connect(function(err, client, done) {
