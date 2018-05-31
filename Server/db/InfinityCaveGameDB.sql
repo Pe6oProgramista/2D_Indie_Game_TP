@@ -15,3 +15,6 @@ create table "Leaderboard"(
 	PRIMARY KEY( "UserId", "LevelNumber" ),
 	FOREIGN KEY ("UserId") REFERENCES "Users"("Id")
 );
+
+SELECT * FROM "Users"
+INNER JOIN "Leaderboard" ON "Users"."Id" = "Leaderboard"."UserId" AND "Leaderboard"."LevelNumber" = 2
