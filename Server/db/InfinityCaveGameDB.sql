@@ -16,5 +16,6 @@ create table "Leaderboard"(
 	FOREIGN KEY ("UserId") REFERENCES "Users"("Id")
 );
 
-SELECT * FROM "Users"
+SELECT "Username", "Score" FROM "Users" 
 INNER JOIN "Leaderboard" ON "Users"."Id" = "Leaderboard"."UserId" AND "Leaderboard"."LevelNumber" = 2
+ORDER BY "Score" DESC;

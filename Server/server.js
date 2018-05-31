@@ -245,6 +245,7 @@ app.get('/:user/leaderboard/:levelNumber', function(req, res) {
 								'ORDER BY "Score" DESC;',
 						values: [req.levelNumbers],
 					}
+					console.log('POSTLevel number: ' + req.levelNumber);
 					pool2.connect(function(err, client, done) {
 						if (err) {
 							return console.error('error fetching client from pool', err);
@@ -287,7 +288,7 @@ app.param('levelNumber', function(req, res, next, levelNumber) {
 });
 
 app.post('/:user/leaderboards/:levelNumber', function(req, res) {
-	console.log('Level number: ' + req.levelNumber);
+	console.log('POSTLevel number: ' + req.levelNumber);
 	
 	var newScore = req.body['data'];
 	
@@ -322,7 +323,6 @@ app.post('/:user/leaderboards/:levelNumber', function(req, res) {
 								'WHERE "Users"."AuthKey" = $1',  
 						values: [req.user, req.levelNumber],
 					};
-					console.log("levelNumber: " + req.levelNumber);
 					
 					pool2.connect(function(err, client, done) {
 						if (err) {
