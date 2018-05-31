@@ -285,7 +285,7 @@ app.get('/:user/leaderboard/:levelNumber', function(req, res) {
     // next();
 // });
 
-app.post('/:user/leaderboards/:levelNumber', function(req, res) {
+app.post('/:user/leaderboard/:levelNumber', function(req, res) {
 	var newScore = req.body['data'];
 	
 	var query = {
