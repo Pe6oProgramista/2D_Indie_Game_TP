@@ -240,12 +240,12 @@ app.get('/:user/leaderboard/:levelNumber', function(req, res) {
 				else {
 					var pool2 = new pg.Pool(config);
 					var getQuery = {
-						text: 'SELECT "Username", "Score" FROM "Users" ' + 
-								'INNER JOIN "Leaderboard" ON "Users"."Id" = "Leaderboard"."UserId" AND "Leaderboard"."LevelNumber" = ' + req.levelNumbers +
+						text: 'SELECT "Username", "Score" FROM "Users"' + 
+								'INNER JOIN "Leaderboard" ON "Users"."Id" = "Leaderboard"."UserId" AND "Leaderboard"."LevelNumber" = $1' +
 								'ORDER BY "Score" DESC',
-						//values: [req.levelNumbers],
+						values: [req.levelNumber],
 					}
-					console.log('POSTLevel number: ' + req.levelNumber);
+					
 					pool2.connect(function(err, client, done) {
 						if (err) {
 							return console.error('error fetching client from pool', err);
@@ -257,14 +257,12 @@ app.get('/:user/leaderboard/:levelNumber', function(req, res) {
 								if(err) {
 									return console.error('error running query7', err);
 								}
-								console.log('POSTLevel number:adasd ' + result.rows + getQuery.text);
 								var returnResult = "";
 								result.rows.forEach((row, index) => {
 									returnResult += row.Username + "..";
 									returnResult += row.Score;
 									if(index < result.rowCount - 1) returnResult += "...";
 								})
-								console.log('Success ' + returnResult);
 								res.send('Success ' + returnResult);
 								done();
 							});
@@ -288,8 +286,6 @@ app.get('/:user/leaderboard/:levelNumber', function(req, res) {
 // });
 
 app.post('/:user/leaderboards/:levelNumber', function(req, res) {
-	console.log('POSTLevel number: ' + req.levelNumber);
-	
 	var newScore = req.body['data'];
 	
 	var query = {
