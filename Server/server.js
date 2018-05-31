@@ -317,10 +317,11 @@ app.post('/:user/leaderboards/:levelNumber', function(req, res) {
 					var pool2 = new pg.Pool(config);
 					var getQuery = {
 						text: 'SELECT * FROM "Users"' + 
-								'INNER JOIN "Leaderboard" ON "Users"."Id" = "Leaderboard"."UserId"' +
-								'WHERE "Users"."AuthKey" = $1 AND "LevelNumber" = $2',  
+								'INNER JOIN "Leaderboard" ON "Users"."Id" = "Leaderboard"."UserId" AND "Leaderboard"."LevelNumber" = $2' +
+								'WHERE "Users"."AuthKey" = $1',  
 						values: [req.user, req.levelNumber],
-					}
+					};
+					console.log("levelNumber: " + req.levelNumber);
 					
 					pool2.connect(function(err, client, done) {
 						if (err) {
