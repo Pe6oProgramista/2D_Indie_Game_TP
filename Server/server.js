@@ -257,7 +257,7 @@ app.get('/:user/leaderboard/:levelNumber', function(req, res) {
 								if(err) {
 									return console.error('error running query7', err);
 								}
-								
+								console.log('POSTLevel number: ' + result.rows);
 								var returnResult = "";
 								result.rows.forEach((row, index) => {
 									returnResult += row.Username + "..";
