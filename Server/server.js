@@ -240,9 +240,9 @@ app.get('/:user/leaderboard/:levelNumber', function(req, res) {
 				else {
 					var pool2 = new pg.Pool(config);
 					var getQuery = {
-						text: 'SELECT "Username", "Score" FROM "Users"' + 
-								'INNER JOIN "Leaderboard" ON "Users"."Id" = "Leaderboard"."UserId" AND "Leaderboard"."LevelNumber" = $1' +
-								'ORDER BY "Score" DESC',
+						text: 'SELECT "Username", "Score" FROM "Users" ' +
+							'INNER JOIN "Leaderboard" ON "Users"."Id" = "Leaderboard"."UserId" AND "Leaderboard"."LevelNumber" = $1 ' +
+							'ORDER BY "Score" DESC',
 						values: [req.levelNumber],
 					}
 					
@@ -257,12 +257,14 @@ app.get('/:user/leaderboard/:levelNumber', function(req, res) {
 								if(err) {
 									return console.error('error running query7', err);
 								}
+								console.log(req.levelNumber + " tuk: " + result);
 								var returnResult = "";
 								result.rows.forEach((row, index) => {
 									returnResult += row.Username + "..";
 									returnResult += row.Score;
 									if(index < result.rowCount - 1) returnResult += "...";
 								})
+								console.log("returnResult: " + returnResult);
 								res.send('Success ' + returnResult);
 								done();
 							});
@@ -275,15 +277,15 @@ app.get('/:user/leaderboard/:levelNumber', function(req, res) {
 	pool.end();
 });
 
-// app.param('user', function(req, res, next, user) {
-    // req.user = user;
-    // next();
-// });
+app.param('user', function(req, res, next, user) {
+    req.user = user;
+    next();
+});
 
-// app.param('levelNumber', function(req, res, next, levelNumber) {
-    // req.levelNumber = levelNumber;
-    // next();
-// });
+app.param('levelNumber', function(req, res, next, levelNumber) {
+    req.levelNumber = levelNumber;
+    next();
+});
 
 app.post('/:user/leaderboard/:levelNumber', function(req, res) {
 	var newScore = req.body['data'];
