@@ -14,10 +14,11 @@ public class Login : MonoBehaviour {
     private string Username = "";
     private string Password = "";
 
-    private static readonly string URL = "https://grapplinghook-game-server.herokuapp.com/" + "login";
+    private string URL;
 
     void Start()
     {
+        URL = ApplicationModel.URL + "login";
         GetComponent<Button>().onClick.AddListener(delegate { Action(); });
     }
 

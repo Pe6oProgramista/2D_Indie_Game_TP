@@ -10,7 +10,6 @@ public class ButtonOptions : MonoBehaviour {
 
     public void OnSelect(int sceneIndex)
     {
-        Debug.Log(ApplicationModel.level);
         ApplicationModel.sceneIndexes.Add(SceneManager.GetActiveScene().buildIndex);
         this.sceneIndex = sceneIndex;
         animator = GameObject.Find("Fade/Fade").GetComponent<Animator>();

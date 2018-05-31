@@ -5,18 +5,25 @@ using UnityEngine.UI;
 
 public class Checkpoint : MonoBehaviour {
 
-    private static readonly string URL = "https://grapplinghook-game-server.herokuapp.com/" + ApplicationModel.authenticationToken + "/leaderboards/" + ApplicationModel.level;
+    private string URL;
 
     private Text time;
+    private bool IsTriggered = false;
 
     void Start () {
+        URL = ApplicationModel.URL + ApplicationModel.authenticationToken + "/leaderboard/" + ApplicationModel.level;
         time = GameObject.Find("Timer/Text").GetComponent<Text>();
 	}
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collision");
-        Action();
+        if (!IsTriggered)
+        {
+            IsTriggered = true;
+            Debug.Log(ApplicationModel.authenticationToken);
+            Debug.Log("Triggered");
+            Action();
+        }
     }
 
     void Action()
@@ -49,5 +56,6 @@ public class Checkpoint : MonoBehaviour {
                 Debug.Log(result[1]);
             }
         }
+        Camera.main.gameObject.GetComponent<ButtonOptions>().Back();
     }
 }

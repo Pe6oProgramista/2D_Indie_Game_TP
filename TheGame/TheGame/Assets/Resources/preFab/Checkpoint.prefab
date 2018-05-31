@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212699294337116180}
   - component: {fileID: 95632471604445770}
   - component: {fileID: 58885499690514280}
+  - component: {fileID: 114779612605069792}
   m_Layer: 0
   m_Name: Checkpoint
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1370682098276082}
   m_LocalRotation: {x: 0, y: 0.0015707754, z: 0, w: 0.9999988}
-  m_LocalPosition: {x: -31.804893, y: -1.2579966, z: 0}
+  m_LocalPosition: {x: -32.286446, y: 7.387407, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -56,7 +57,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.56
+  m_Radius: 0.3
 --- !u!95 &95632471604445770
 Animator:
   serializedVersion: 3
@@ -74,6 +75,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114779612605069792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1370682098276082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 825ba77330e95bd44bc4b8b4c66483b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212699294337116180
 SpriteRenderer:
   m_ObjectHideFlags: 1

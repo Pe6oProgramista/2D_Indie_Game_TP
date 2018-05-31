@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class ApplicationModel {
 	static public string URL = "https://grapplinghook-game-server.herokuapp.com/";
     static public string authenticationToken = "";
@@ -11,5 +13,5 @@ public class ApplicationModel {
     static public int level = 1;
     static public List<int> sceneIndexes = new List<int>();
 
-    static public int leaderboardLevl;
+    static public int leaderboardLevl = 3;
 }

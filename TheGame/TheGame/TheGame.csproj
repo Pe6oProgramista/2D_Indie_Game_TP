@@ -283,9 +283,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AudioControler.cs" />
     <Compile Include="Assets\Resources\Scripts\ApplicationModel.cs" />
-    <Compile Include="Assets\Resources\Scripts\ArrayList.cs" />
+    <Compile Include="Assets\Resources\Scripts\AudioControler.cs" />
     <Compile Include="Assets\Resources\Scripts\Blade.cs" />
     <Compile Include="Assets\Resources\Scripts\ButtonScripts\ButtonAnimation.cs" />
     <Compile Include="Assets\Resources\Scripts\ButtonScripts\ButtonOptions.cs" />
@@ -296,7 +295,6 @@
     <Compile Include="Assets\Resources\Scripts\LeaderboardGenerator.cs" />
     <Compile Include="Assets\Resources\Scripts\LevelGenerator.cs" />
     <Compile Include="Assets\Resources\Scripts\Login.cs" />
-    <Compile Include="Assets\Resources\Scripts\PlayerControler.cs" />
     <Compile Include="Assets\Resources\Scripts\PlayerScripts\GrapplingHook.cs" />
     <Compile Include="Assets\Resources\Scripts\PlayerScripts\PlayerController.cs" />
     <Compile Include="Assets\Resources\Scripts\Registration.cs" />

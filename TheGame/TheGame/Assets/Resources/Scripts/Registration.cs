@@ -20,9 +20,10 @@ public class Registration : MonoBehaviour {
     private string Password = "";
     private string ConfPassword = "";
 
-    private static readonly string URL = "https://grapplinghook-game-server.herokuapp.com/register";
+    private string URL;
 
     void Start () {
+        URL = ApplicationModel.URL + "register";
         GetComponent<Button>().onClick.AddListener(delegate { Action(); });
     }
 
@@ -95,7 +96,6 @@ public class Registration : MonoBehaviour {
         else
         {
             string[] result = data.text.Split(',');
-            Debug.Log(result[0]);
             if(result[0].Contains("Success"))
             {
                 GameObject.Find("Registration Fields").GetComponent<ButtonOptions>().OnSelect(1);

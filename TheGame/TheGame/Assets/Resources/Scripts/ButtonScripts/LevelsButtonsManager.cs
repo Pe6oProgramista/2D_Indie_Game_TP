@@ -27,12 +27,10 @@ public class LevelsButtonsManager : MonoBehaviour {
     private GameObject backArrow;
     private GameObject nextArrow;
 
-    private bool inFirst = false;
-
-    private static readonly string URL = "https://grapplinghook-game-server.herokuapp.com/" + "levels/" + ApplicationModel.authenticationToken;
+    private string URL;
 
     void Start () {
-
+        URL = ApplicationModel.URL + "levels/" + ApplicationModel.authenticationToken;
         Action();
     }
 
@@ -142,12 +140,10 @@ public class LevelsButtonsManager : MonoBehaviour {
         WWW www;
         www = new WWW(URL);
         StartCoroutine(WaitForRequest(www));
-        Debug.Log(userLastLevel);
     }
 
     private IEnumerator WaitForRequest(WWW data)
     {
-        inFirst = true;
         yield return data;
         if (data.error != null)
         {
@@ -156,7 +152,6 @@ public class LevelsButtonsManager : MonoBehaviour {
         else
         {
             string[] result = data.text.Split(',');
-            Debug.Log(result[0]);
             if (result[0].Contains("Success"))
             {
                 userLastLevel = 0;
@@ -187,6 +182,5 @@ public class LevelsButtonsManager : MonoBehaviour {
                 Debug.Log(result[1]);
             }
         }
-        inFirst = false;
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Threading;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,7 +17,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        SceneManager.UnloadSceneAsync(6);
         jumpSpeed = 6;
         myRB = GetComponent<Rigidbody2D>();
         myAnim = GetComponent<Animator>();
@@ -66,10 +64,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnBecameInvisible()
-    {
-        SceneManager.LoadScene("Level");
-    }
+    //void OnBecameInvisible()
+    //{
+    //    SceneManager.LoadScene("Level");
+    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -77,13 +75,10 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene("Level");
         }
-        if(collision.collider.gameObject.tag.Equals("Ground"))
+        if (GetComponent<EdgeCollider2D>().IsTouching(collision.collider))
         {
-            if (GetComponent<EdgeCollider2D>().IsTouching(collision.collider))
-            {
-                grounded = true;
-                canJump = 2;
-            }
+            grounded = true;
+            canJump = 2;
         }
     }
 

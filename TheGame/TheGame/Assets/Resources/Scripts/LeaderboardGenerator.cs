@@ -20,9 +20,11 @@ public class LeaderboardGenerator : MonoBehaviour {
 
     private Dictionary<string, string> userScore;
 
-    private static readonly string URL = "https://grapplinghook-game-server.herokuapp.com/" + ApplicationModel.authenticationToken + "/leaderboard/" + ApplicationModel.leaderboardLevl;
+    private string URL;
 
     void Start () {
+        URL = ApplicationModel.URL + ApplicationModel.authenticationToken + "/leaderboard/" + ApplicationModel.leaderboardLevl;
+
         panelSize = GetComponent<RectTransform>().rect.size;
 
         transform.GetChild(0).GetComponent<Text>().text = "Level" + ApplicationModel.leaderboardLevl;
@@ -109,6 +111,7 @@ public class LeaderboardGenerator : MonoBehaviour {
 
     private IEnumerator WaitForRequest(WWW data)
     {
+        Debug.Log("adadasd" + ApplicationModel.leaderboardLevl);
         yield return data;
         if (data.error != null)
         {
@@ -120,7 +123,7 @@ public class LeaderboardGenerator : MonoBehaviour {
             if (result[0].Contains("Success"))
             {
                 scoresCount = 0;
-                if (result[1].Contains("..."))
+                if (result[1].Contains(".."))
                 {
                     string[] resultData = result[1].Split(new string[] { "..." }, StringSplitOptions.None);
                     foreach (string field in resultData)
@@ -129,6 +132,7 @@ public class LeaderboardGenerator : MonoBehaviour {
                         userScore.Add(f[0], f[1]);
                     }
                     scoresCount = userScore.Count;
+                    Debug.Log("ScoresCount: " + scoresCount + "  AND  " + userScore.Count);
                 }
 
                 pages = (scoresCount % 5 == 0) ? scoresCount / 5 : scoresCount / 5 + 1;
