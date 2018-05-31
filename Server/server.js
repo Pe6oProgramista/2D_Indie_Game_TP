@@ -257,7 +257,6 @@ app.get('/:user/leaderboard/:levelNumber', function(req, res) {
 								if(err) {
 									return console.error('error running query7', err);
 								}
-								console.log(req.levelNumber + " tuk: " + result);
 								var returnResult = "";
 								result.rows.forEach((row, index) => {
 									returnResult += row.Username + "..";
@@ -339,7 +338,7 @@ app.post('/:user/leaderboard/:levelNumber', function(req, res) {
 									var score = result.rows[0].Score;
 									var finalScore = "";
 									if(parseInt(score.split(":")[0]) == parseInt(newScore.split(":")[0])) {
-										if(parseInt(score.split(":")[1].split(".")[0]) > parseInt(newScore.split(":")[1].split(".")[0])) {
+										if(parseInt(score.split(":")[1].split(".")[0]) < parseInt(newScore.split(":")[1].split(".")[0])) {
 											finalScore = score;
 										}
 										else {
@@ -347,15 +346,15 @@ app.post('/:user/leaderboard/:levelNumber', function(req, res) {
 										}
 									}
 									else {
-										finalScore = (parseInt(score.split(":")[0]) > parseInt(newScore.split(":")[0])) ? score : newScore;
+										finalScore = (parseInt(score.split(":")[0]) < parseInt(newScore.split(":")[0])) ? score : newScore;
 									 }
 									
 									var pool3 = new pg.Pool(config);
 									var updateQuery = {
 										text: 'UPDATE "Leaderboard" ' + 
 												'SET "Score" = $1 ' +
-												'WHERE "UserId" = $2',
-										values: [finalScore, userId],
+												'WHERE "UserId" = $2 AND "LevelNumber" = $3',
+										values: [finalScore, userId, req.levelNumber],
 									}
 									pool3.connect(function(err, client, done) {
 										if (err) {
