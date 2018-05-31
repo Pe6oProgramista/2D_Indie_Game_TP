@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Blade : MonoBehaviour {
 
@@ -26,6 +27,24 @@ public class Blade : MonoBehaviour {
 		}
 	}
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            SceneManager.LoadScene("Level");
+        }
+    }
 
+    void On(Collider Enemy)
+    {
+        if (Enemy.gameObject.CompareTag("enemy"))
+        {
+            Enemy.gameObject.SendMessage("OnDamage", damage);
+        }
+        if (Enemy.tag == "Player")
+        {
+            SceneManager.LoadScene("Level");
+        }
+    }
 
 }

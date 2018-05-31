@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        SceneManager.UnloadSceneAsync(6);
         jumpSpeed = 6;
         myRB = GetComponent<Rigidbody2D>();
         myAnim = GetComponent<Animator>();
@@ -67,14 +68,14 @@ public class PlayerController : MonoBehaviour
 
     void OnBecameInvisible()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("Level");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag.Equals("Enemy"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene("Level");
         }
         if(collision.collider.gameObject.tag.Equals("Ground"))
         {

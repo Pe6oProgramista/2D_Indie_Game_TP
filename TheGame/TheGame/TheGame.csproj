@@ -296,6 +296,7 @@
     <Compile Include="Assets\Resources\Scripts\LeaderboardGenerator.cs" />
     <Compile Include="Assets\Resources\Scripts\LevelGenerator.cs" />
     <Compile Include="Assets\Resources\Scripts\Login.cs" />
+    <Compile Include="Assets\Resources\Scripts\PlayerControler.cs" />
     <Compile Include="Assets\Resources\Scripts\PlayerScripts\GrapplingHook.cs" />
     <Compile Include="Assets\Resources\Scripts\PlayerScripts\PlayerController.cs" />
     <Compile Include="Assets\Resources\Scripts\Registration.cs" />
