@@ -241,7 +241,7 @@ app.get('/:user/leaderboard/:levelNumber', function(req, res) {
 					var pool2 = new pg.Pool(config);
 					var getQuery = {
 						text: 'SELECT "Username", "Score" FROM "Users" ' + 
-								'INNER JOIN "Leaderboard" ON "Users"."Id" = "Leaderboard"."UserId" AND "Leaderboard"."LevelNumber" = 1 ' +
+								'INNER JOIN "Leaderboard" ON "Users"."Id" = "Leaderboard"."UserId" AND "Leaderboard"."LevelNumber" = ' + req.levelNumbers +
 								'ORDER BY "Score" DESC',
 						//values: [req.levelNumbers],
 					}
