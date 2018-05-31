@@ -243,7 +243,7 @@ app.get('/:user/leaderboard/:levelNumber', function(req, res) {
 						text: 'SELECT "Username", "Score" FROM "Users" ' + 
 								'INNER JOIN "Leaderboard" ON "Users"."Id" = "Leaderboard"."UserId" AND "Leaderboard"."LevelNumber" = 1 ' +
 								'ORDER BY "Score" DESC',
-						values: [req.levelNumbers],
+						//values: [req.levelNumbers],
 					}
 					console.log('POSTLevel number: ' + req.levelNumber);
 					pool2.connect(function(err, client, done) {
