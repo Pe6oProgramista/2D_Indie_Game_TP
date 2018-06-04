@@ -20,7 +20,6 @@ public class Checkpoint : MonoBehaviour {
         if (!IsTriggered)
         {
             IsTriggered = true;
-            Debug.Log(ApplicationModel.authenticationToken);
             Debug.Log("Triggered");
             Action();
         }
@@ -28,11 +27,12 @@ public class Checkpoint : MonoBehaviour {
 
     void Action()
     {
+        string score = time.text;
         WWW www;
         Hashtable postHeader = new Hashtable();
         postHeader.Add("Content-Type", "application/json");
         WWWForm form = new WWWForm();
-        form.AddField("data", time.text);
+        form.AddField("data", score);
         www = new WWW(URL, form);
         StartCoroutine(WaitForRequest(www));
     }

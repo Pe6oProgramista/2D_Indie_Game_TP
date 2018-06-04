@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 
 [System.Serializable]
 public class ColorToPrefab
@@ -16,7 +17,8 @@ public class LevelGenerator : MonoBehaviour {
 
     void Start () {
         map = (Texture2D)Resources.Load("Sprites\\Levels\\Level" + ApplicationModel.level);
-        offset = new Vector2(background.bounds.center.x - background.bounds.size.x / 2, background.bounds.center.y - background.bounds.size.y / 2);
+
+        offset = new Vector2(background.bounds.center.x - map.width / 2, background.bounds.center.y - map.height / 2);
         for (int x = 0; x < map.width; x++)
         {
             for(int y = 0; y < map.height; y++)
@@ -25,6 +27,22 @@ public class LevelGenerator : MonoBehaviour {
             }
         }
 	}
+
+    public static Texture2D LoadPNG(string filePath)
+    {
+
+        Texture2D tex = null;
+        byte[] fileData;
+
+        if (File.Exists(filePath))
+        {
+            Application.Quit();
+            fileData = File.ReadAllBytes(filePath);
+            tex = new Texture2D(2, 2);
+            tex.LoadImage(fileData);
+        }
+        return tex;
+    }
 
     void GeneratePixel(int x, int y)
     {
@@ -37,11 +55,7 @@ public class LevelGenerator : MonoBehaviour {
 
         foreach(ColorToPrefab colorMapping in colorMappings)
         {
-            Vector3 pos = new Vector3(offset.x + (x * colorMapping.prefab.GetComponent<SpriteRenderer>().bounds.size.x),
-                    offset.y + (y * colorMapping.prefab.GetComponent<SpriteRenderer>().bounds.size.y),
-                    (map.GetPixel(x, y + 1).Equals(pixelColor)) ? 0.1f : 0);
-            pos.x /= colorMapping.prefab.transform.localScale.x;
-            pos.y /= colorMapping.prefab.transform.localScale.y;
+            Vector3 pos = new Vector3(x + offset.x, y + offset.y, 0);
 
             if (pixelColor.Equals(new Color(0, 1, 0, 1)))
             {
@@ -54,6 +68,13 @@ public class LevelGenerator : MonoBehaviour {
         }
     }
 }
+
+
+//Vector3 pos = new Vector3(offset.x + (x * colorMapping.prefab.GetComponent<SpriteRenderer>().bounds.size.x),
+//offset.y + (y * colorMapping.prefab.GetComponent<SpriteRenderer>().bounds.size.y),
+//(map.GetPixel(x, y + 1).Equals(pixelColor)) ? 0.1f : 0);
+//pos.x /= colorMapping.prefab.transform.localScale.x;
+//pos.y /= colorMapping.prefab.transform.localScale.y;
 
 //public SpriteRenderer background;
 //offset = new Vector2(background.bounds.center.x - background.bounds.size.x / 2, background.bounds.center.y - background.bounds.size.y / 2);

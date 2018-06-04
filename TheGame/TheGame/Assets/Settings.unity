@@ -2061,52 +2061,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1096986620}
---- !u!1001 &1112393719
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4565383933670564, guid: 9935e258458d16942a3617990632340c, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 156
-      objectReference: {fileID: 0}
-    - target: {fileID: 4565383933670564, guid: 9935e258458d16942a3617990632340c, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 133
-      objectReference: {fileID: 0}
-    - target: {fileID: 4565383933670564, guid: 9935e258458d16942a3617990632340c, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4565383933670564, guid: 9935e258458d16942a3617990632340c, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4565383933670564, guid: 9935e258458d16942a3617990632340c, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4565383933670564, guid: 9935e258458d16942a3617990632340c, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4565383933670564, guid: 9935e258458d16942a3617990632340c, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4565383933670564, guid: 9935e258458d16942a3617990632340c, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751232782240736, guid: 9935e258458d16942a3617990632340c, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 9935e258458d16942a3617990632340c, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1122617541
 GameObject:
   m_ObjectHideFlags: 0
@@ -3316,6 +3270,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 3a1cb20e129cf694abe7796bb760a4e2, type: 2}
   resolutionDropdown: {fileID: 944525665}
+  fullscreenToggle: {fileID: 469793083}
+  qualityDropdown: {fileID: 205544203}
+  volumeSlider: {fileID: 1848212039}
+  fpsToggle: {fileID: 291757262}
+  fpsSlider: {fileID: 141313130}
 --- !u!114 &1545710457
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,10 +21,10 @@ public class ButtonOptions : MonoBehaviour {
     {
         int backSceneIndex = ApplicationModel.sceneIndexes.ToArray()[ApplicationModel.sceneIndexes.Count - 1];
         ApplicationModel.sceneIndexes.Remove(backSceneIndex);
-        this.sceneIndex = backSceneIndex;
+        sceneIndex = backSceneIndex;
         animator = GameObject.Find("Fade/Fade").GetComponent<Animator>();
         animator.SetTrigger("FadeOut");
-        Invoke("ChangeScene", 1);
+        InvokeRealTime("ChangeScene", 1);
     }
 
     public void ChangeScene()
@@ -36,4 +36,39 @@ public class ButtonOptions : MonoBehaviour {
     {
         Application.Quit();
     }
+
+    public void Resume(GameObject pauseMenu)
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void MainMenu()
+    {
+        int backSceneIndex = ApplicationModel.sceneIndexes.ToArray()[ApplicationModel.sceneIndexes.Count - 1];
+        ApplicationModel.sceneIndexes.Remove(backSceneIndex);
+        backSceneIndex = ApplicationModel.sceneIndexes.ToArray()[ApplicationModel.sceneIndexes.Count - 1];
+        ApplicationModel.sceneIndexes.Remove(backSceneIndex);
+        sceneIndex = backSceneIndex;
+        animator = GameObject.Find("Fade/Fade").GetComponent<Animator>();
+        animator.SetTrigger("FadeOut");
+        InvokeRealTime("ChangeScene", 1);
+    }
+
+    public void InvokeRealTime(string functionName, float delay)
+    {
+        StartCoroutine(InvokeRealTimeHelper(functionName, delay));
+    }
+    private IEnumerator InvokeRealTimeHelper(string functionName, float delay)
+    {
+        float timeElapsed = 0f;
+        while (timeElapsed < delay)
+        {
+            timeElapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        SendMessage(functionName);
+    }
+
+
 }

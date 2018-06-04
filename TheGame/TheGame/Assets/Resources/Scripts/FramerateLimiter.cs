@@ -10,6 +10,7 @@ public class FramerateLimiter : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         QualitySettings.vSyncCount = 0;
     }
 

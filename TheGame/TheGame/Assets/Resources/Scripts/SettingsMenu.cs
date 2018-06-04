@@ -9,6 +9,11 @@ public class SettingsMenu : MonoBehaviour {
     public AudioMixer audioMixer;
 
     public Dropdown resolutionDropdown;
+    public Toggle fullscreenToggle;
+    public Dropdown qualityDropdown;
+    public Slider volumeSlider;
+    public Toggle fpsToggle;
+    public Slider fpsSlider;
 
     Resolution[] resolutions;
 
@@ -33,6 +38,18 @@ public class SettingsMenu : MonoBehaviour {
         resolutionDropdown.AddOptions(resolutionsNames);
         resolutionDropdown.value = currResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+
+        fullscreenToggle.isOn = Screen.fullScreen;
+
+        qualityDropdown.value = QualitySettings.GetQualityLevel();
+        qualityDropdown.RefreshShownValue();
+
+        float volume;
+        audioMixer.GetFloat("volume", out volume);
+        volumeSlider.value = volume;
+
+        fpsToggle.isOn = ApplicationModel.fpsOn;
+        fpsSlider.value = ApplicationModel.targetFrameRate;
     }
 
     public void Setvolume(float volume)

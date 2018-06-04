@@ -6,10 +6,12 @@ public class CameraController : MonoBehaviour {
     public Transform target;
     public float smoothSpeed = 0.05f;
     public SpriteRenderer background;
+    public GameObject pauseMenu;
 
     private Vector2 halfExtents;
     private void Start()
     {
+        pauseMenu.SetActive(false);
         float vertExtent = GetComponent<Camera>().orthographicSize;
         float horzExtent = vertExtent * Screen.width / Screen.height;
 
@@ -22,7 +24,8 @@ public class CameraController : MonoBehaviour {
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            GetComponent<ButtonOptions>().Back();
+            Time.timeScale = 0;
+            pauseMenu.SetActive(true);
         }
     }
 

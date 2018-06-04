@@ -9,7 +9,7 @@ public class GrapplingHook : MonoBehaviour {
     private Rigidbody2D AnchorRb;
     private SpriteRenderer AnchorSprite;
     private bool ropeAttached;
-    private List<Vector2> ropePositions = new List<Vector2>();
+    private List<Vector2> ropePositions;
     private bool distanceSet;
     private Vector3 targetPos;
 
@@ -19,10 +19,13 @@ public class GrapplingHook : MonoBehaviour {
     public LineRenderer ropeRenderer;
     public Transform RopeHand;
 
+    Vector3 aimDirection;
+
     void Awake () {
         joint.enabled = false;
         AnchorRb = Anchor.GetComponent<Rigidbody2D>();
         AnchorSprite = Anchor.GetComponent<SpriteRenderer>();
+        ropePositions = new List<Vector2>();
     }
 	
 	void Update () {
@@ -41,120 +44,121 @@ public class GrapplingHook : MonoBehaviour {
             aimAngle = Mathf.PI * 2 + aimAngle;
         }
 
-        var aimDirection = Quaternion.Euler(0, 0, aimAngle * Mathf.Rad2Deg) * Vector2.right;
+        aimDirection = Quaternion.Euler(0, 0, aimAngle * Mathf.Rad2Deg) * Vector2.right;
 
         HandleInput(aimDirection);
         UpdateRopePositions();
     }
 
+    bool clicked = false;
+
     private void HandleInput(Vector2 aimDirection)
     {
         if (Input.GetKey(KeyCode.W))
         {
-            if (ropeAttached)
+            if(clicked)
             {
-                if (Input.GetKey(KeyCode.Space))
+                float distance = Vector3.Distance(RopeHand.position, ropePositions[0]);
+                if (distance < 0.1)
                 {
-                    while(joint.distance > 0.2)
-                        joint.distance -= 0.1f;
+                    ResetRope();
+                    return;
                 }
-                return;
-            }
-            ropeRenderer.enabled = true;
-
-            var hit = Physics2D.Raycast(RopeHand.position, aimDirection, ropeLength);
-
-            if (hit.collider != null && (hit.collider.gameObject.tag.Equals("Grippable") || hit.collider.gameObject.tag.Equals("Ground")))
-            {
-                ropeAttached = true;
-                if (!ropePositions.Contains(hit.point))
-                {
-                    // Jump slightly to distance the player a little from the ground after grappling to something.
-                    //transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 2f), ForceMode2D.Impulse);
-
-                    ropePositions.Add(hit.point);
-                    joint.distance = Vector2.Distance(RopeHand.position, hit.point);
-                    joint.enabled = true;
-                    AnchorSprite.enabled = true;
-                }
+                ropePositions[0] = RopeHand.position + (Vector3)aimDirection * distance * 0.92f;
             }
             else
             {
-                ropeRenderer.enabled = false;
-                ropeAttached = false;
-                joint.enabled = false;
-            } 
+                if (ropeAttached)
+                {
+                    if (Input.GetKey(KeyCode.Space))
+                    {
+                        while (joint.distance > 0.2)
+                            joint.distance -= 0.1f;
+                    }
+                    return;
+                }
+
+                var hit = Physics2D.Raycast(RopeHand.position, aimDirection, ropeLength);
+
+                if (hit.collider != null && (hit.collider.gameObject.tag.Equals("Grippable") || hit.collider.gameObject.tag.Equals("Ground")))
+                {
+                    ropeAttached = true;
+                    if (!ropePositions.Contains(hit.point))
+                    {
+                        ropePositions.Clear();
+                        ropePositions.Add(hit.point);
+                        joint.distance = Vector2.Distance(RopeHand.position, hit.point);
+                        joint.enabled = true;
+                    }
+                }
+                else
+                {
+                    ropeAttached = false;
+                    joint.enabled = false;
+                    ropePositions.Clear();
+                    ropePositions.Add(RopeHand.position + (Vector3)aimDirection * ropeLength);
+                    clicked = true;
+                }
+                ropeRenderer.enabled = true;
+                AnchorSprite.enabled = true;
+            }
         }
 
         if (!Input.GetKey(KeyCode.W))
         {
+            clicked = false;
             ResetRope();
         }
     }
 
     private void ResetRope()
     {
-        joint.enabled = false;
         ropeAttached = false;
-        ropeRenderer.positionCount = 2;
-        ropeRenderer.SetPosition(0, RopeHand.position);
-        ropeRenderer.SetPosition(1, RopeHand.position);
-        ropePositions.Clear();
+        joint.enabled = false;
+        ropeRenderer.enabled = false;
         AnchorSprite.enabled = false;
-        AnchorRb.transform.position = new Vector3(RopeHand.position.x, RopeHand.position.y, 0);
+
+        ropeRenderer.positionCount = 0;
+        ropePositions.Clear();
+        AnchorRb.transform.position = RopeHand.position;
     }
 
     private void UpdateRopePositions()
     {
-        if (!ropeAttached)
-        {
-            return;
-        }
-
         ropeRenderer.positionCount = ropePositions.Count + 1;
-
-        for (var i = ropeRenderer.positionCount - 1; i >= 0; i--)
+        for (int i = 0; i < ropeRenderer.positionCount; i++)
         {
-            if (i != ropeRenderer.positionCount - 1)
+            if (i == 0)
             {
-                ropeRenderer.SetPosition(i, ropePositions[i]);
-
-                if (i == ropePositions.Count - 1 || ropePositions.Count == 1)
-                {
-                    var ropePosition = ropePositions[ropePositions.Count - 1];
-                    if (ropePositions.Count == 1)
-                    {
-                        AnchorRb.transform.position = ropePosition;
-                        if (!distanceSet)
-                        {
-                            joint.distance = Vector2.Distance(RopeHand.position, ropePosition);
-                            distanceSet = true;
-                        }
-                    }
-                    else
-                    {
-                        AnchorRb.transform.position = ropePosition;
-                        if (!distanceSet)
-                        {
-                            joint.distance = Vector2.Distance(RopeHand.position, ropePosition);
-                            distanceSet = true;
-                        }
-                    }
-                }
-                else if (i - 1 == ropePositions.IndexOf(ropePositions.Last()))
-                {
-                    var ropePosition = ropePositions.Last();
-                    AnchorRb.transform.position = ropePosition;
-                    if (!distanceSet)
-                    {
-                        joint.distance = Vector2.Distance(RopeHand.position, ropePosition);
-                        distanceSet = true;
-                    }
-                }
+                ropeRenderer.SetPosition(i, RopeHand.position);
             }
             else
             {
-                ropeRenderer.SetPosition(i, RopeHand.position);
+                AnchorSprite.enabled = true;
+                var pos = ropePositions[i - 1];
+                ropeRenderer.SetPosition(i, pos);
+                var sinSide = Mathf.Abs(pos.y - ropeRenderer.GetPosition(0).y);
+                var cosSide = Mathf.Abs(pos.x - ropeRenderer.GetPosition(0).x);
+                var hipotenuse = Mathf.Sqrt(Mathf.Pow(cosSide, 2) + Mathf.Pow(sinSide, 2));
+                Debug.Log(cosSide);
+                if (pos.x < ropeRenderer.GetPosition(0).x)
+                {
+                    AnchorRb.transform.rotation = Quaternion.Euler(0, 0, -(Mathf.Asin(sinSide / hipotenuse) * 180 / Mathf.PI + 90));
+                }
+                else
+                {
+                    AnchorRb.transform.rotation = Quaternion.Euler(0, 0, Mathf.Asin(sinSide / hipotenuse) * 180 / Mathf.PI + 90);
+                }
+                AnchorRb.transform.position = pos;
+
+                if(ropeAttached)
+                {
+                    if (!distanceSet)
+                    {
+                        joint.distance = Vector2.Distance(RopeHand.position, pos);
+                        distanceSet = true;
+                    }
+                }
             }
         }
     }

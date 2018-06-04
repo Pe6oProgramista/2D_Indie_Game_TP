@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public float maxSpeed = 5;
-    public float jumpSpeed = 6;
+    public float maxSpeed = 6;
+    public float jumpSpeed = 15;
     public bool facingRight = true;
 
     private bool grounded = false;
@@ -34,10 +34,21 @@ public class PlayerController : MonoBehaviour
         myAnim.SetFloat("speed", Mathf.Abs(moveDir));
         myRB.velocity = new Vector2(moveDir * maxSpeed, myRB.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space) && !Input.GetKey(KeyCode.W))
+        SpriteRenderer background = GameObject.Find("Background").transform.GetChild(2).GetComponent<SpriteRenderer>();
+        if (transform.position.y < background.bounds.center.y - background.bounds.size.y / 2)
+        {
+            SceneManager.LoadScene(6);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && !GetComponent<DistanceJoint2D>().enabled)
         {
             canJump--;
             Jump();
+        }
+
+        if(GetComponent<DistanceJoint2D>().enabled)
+        {
+            canJump = 1;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -64,16 +75,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //void OnBecameInvisible()
-    //{
-    //    SceneManager.LoadScene("Level");
-    //}
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag.Equals("Enemy"))
         {
-            SceneManager.LoadScene("Level");
+            SceneManager.LoadScene(6);
         }
         if (GetComponent<EdgeCollider2D>().IsTouching(collision.collider))
         {

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioControler : MonoBehaviour {
 
     public AudioClip[] audios;
+
     AudioSource audioSource;
 
     int currClipIndex = 0;
@@ -12,6 +14,7 @@ public class AudioControler : MonoBehaviour {
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = audios[currClipIndex];
     }

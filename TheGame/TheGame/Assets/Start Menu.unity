@@ -1061,6 +1061,17 @@ Prefab:
       propertyPath: Loop
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 82554173067795428, guid: 9935e258458d16942a3617990632340c,
+        type: 2}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 3a1cb20e129cf694abe7796bb760a4e2,
+        type: 2}
+    - target: {fileID: 82554173067795428, guid: 9935e258458d16942a3617990632340c,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9935e258458d16942a3617990632340c, type: 2}
   m_IsPrefabParent: 0
@@ -1083,6 +1094,7 @@ MonoBehaviour:
   audios:
   - {fileID: 8300000, guid: fee30bb5e0f69574f819755d5c1bc7aa, type: 3}
   - {fileID: 8300000, guid: 5d1959996524dec468187d0e75ec8f64, type: 3}
+  audioMixer: {fileID: 24100000, guid: 3a1cb20e129cf694abe7796bb760a4e2, type: 2}
 --- !u!1001 &1897812358
 Prefab:
   m_ObjectHideFlags: 0

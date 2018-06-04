@@ -165,7 +165,7 @@ public class LevelsButtonsManager : MonoBehaviour {
                 }
                 panelSize = GetComponent<RectTransform>().rect.size;
 
-                FileInfo[] files = new DirectoryInfo("Assets\\Resources\\Sprites\\Levels").GetFiles();
+                FileInfo[] files = new DirectoryInfo("InfinityCave_Data\\Resources\\Sprites\\Levels").GetFiles();//Assets
                 foreach (FileInfo file in files)
                 {
                     if (file.Extension.Contains("png") || file.Extension.Contains("jpg"))

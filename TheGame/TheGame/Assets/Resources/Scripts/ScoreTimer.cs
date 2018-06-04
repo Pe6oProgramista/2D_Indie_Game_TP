@@ -11,7 +11,7 @@ public class ScoreTimer : MonoBehaviour {
 	private float startTime;
 
 	void Start(){
-		startTime = Time.time;
+        startTime = Time.time;
 	}
 
 	void Update(){
@@ -20,6 +20,6 @@ public class ScoreTimer : MonoBehaviour {
 		string minutes = ((int) t / 60).ToString();
 		string seconds = (t % 60).ToString ("f2");
 
-		timerText.text = minutes + ":" + seconds;
+        timerText.text = minutes + ":" + seconds;
 	}
 }
