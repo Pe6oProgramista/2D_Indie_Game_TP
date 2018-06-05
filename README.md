@@ -32,7 +32,7 @@ The game has different melodies and it makes you feel like you are there and it 
 You have to find the best possible way to pass the level that would guarantee you the best time. But you are faced with bumps that would return you back to the beginning of the level. You have to get to the finish as fast as possible.
 
 11.Enemy – 
-Beware of slippery surfaces, rotating and sharp objects, and water. If with
+Beware of slippery surfaces, rotating and sharp objects. If with
 touch or drop on them you will return to the beginning of the level.
 
 12.Story -
