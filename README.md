@@ -39,6 +39,8 @@ touch or drop on them you will return to the beginning of the level.
 The story is about a lost alpinist in an Icelandic ice cave. because he believed that someone was looking for him missing, and the fact that his stock of food had diminished, he went looking for a way out of this ice cube. the mountaineer traveled hundreds of bottomless chilling corridors but found no trace of sunlight or a sign of living nearby. not long after, he discovered something oddly lit under the ice surface. he began to dig with his two climbing hooks, and when he struck the last blow, he struck the metal object, and one of his hooks broke into hundreds of pieces. these were strange boots, they were unearthly. Their shape did not differ from that of normal human shoes, but they had special forces when the man put them, he had incredible strength, and the boots increased ten times the speed at which he moved. He decided to take a deep look at what might still be hidden under the big ice block, and when he started digging he reached a huge gallery, it was a frozen alien base. The climber was very excited, but equally scared. In his desire to get out of the ice coat, he went to look for an exit in the tunnels excavated by the past cave dwellers.
 What will you do if you can save the lost mountaineer or will you let him get frozen in the icy labyrinth?
 
+13.Video - https://youtu.be/7kHzwLqvw2U
+
 
 
 
