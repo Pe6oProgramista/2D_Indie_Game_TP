@@ -1506,12 +1506,14 @@ MonoBehaviour:
     prefab: {fileID: 1555321714356946, guid: 28448122feebeee449761186de70b3a6, type: 2}
   - color: {r: 1, g: 0, b: 0, a: 1}
     prefab: {fileID: 1376274422735346, guid: d2b7e275db833504385f4188bb6987c4, type: 2}
-  - color: {r: 1, g: 0.9490197, b: 0, a: 1}
+  - color: {r: 1, g: 1, b: 0, a: 1}
     prefab: {fileID: 1399431539273358, guid: d736adb1f0cd6ad4993e5fc0c6e6fd57, type: 2}
   - color: {r: 1, g: 0.5019608, b: 0, a: 1}
     prefab: {fileID: 1370682098276082, guid: 840178f311dc3a54b830d73e0f90889a, type: 2}
   - color: {r: 0.6392157, g: 0.28627452, b: 0.6431373, a: 1}
     prefab: {fileID: 1026377327618388, guid: efddbc6d379372f4fb98ea9fea6f3fbb, type: 2}
+  - color: {r: 0.39215687, g: 0.5882353, b: 0.78431374, a: 1}
+    prefab: {fileID: 1336067721647768, guid: f776c032e2ab6a248a4e2f57eb2df1a1, type: 2}
 --- !u!4 &2027898004
 Transform:
   m_ObjectHideFlags: 0

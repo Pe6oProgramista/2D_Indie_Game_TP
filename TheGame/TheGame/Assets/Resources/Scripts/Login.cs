@@ -1,10 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Login : MonoBehaviour {
@@ -36,24 +31,12 @@ public class Login : MonoBehaviour {
             return;
         }
 
-        string hashedPassword = Hash(Password);
-
-        string jsonString = "{\"username\":\"" + Username + "\"," +
-                            "\"password\":\"" + hashedPassword + "\"}";
-
         WWW www;
-        Hashtable postHeader = new Hashtable();
-        postHeader.Add("Content-Type", "application/json");
         WWWForm form = new WWWForm();
-        form.AddField("data", jsonString);
+        form.AddField("username", Username);
+        form.AddField("password", Password);
         www = new WWW(URL, form);
         StartCoroutine(WaitForRequest(www));
-    }
-
-    static string Hash(string input)
-    {
-        var hash = (new SHA1Managed()).ComputeHash(Encoding.UTF8.GetBytes(input));
-        return string.Join("", hash.Select(b => b.ToString("x2")).ToArray());
     }
 
     private IEnumerator WaitForRequest(WWW data)
