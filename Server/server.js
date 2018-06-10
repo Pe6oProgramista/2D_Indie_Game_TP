@@ -3,8 +3,11 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	tokenGenerator = require('uuid-token-generator'),
 	pg = require('pg'),
+	//crypto = require('crypto'),
+	bcrypt = require('bcrypt'),
 	app = express();
 var port = process.env.PORT || 5000;
+var saltRounds = 10;
 
 const config = {
 	// host: 'localhost',
@@ -19,11 +22,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/register', function(req, res) {
-	var data = JSON.parse(req.body['data']),
-		username = data['username'],
-		email = data['email'],
-		password = data['password'];
-	console.log('Registrating user: ', username);
+	var username = req.body['username'],
+		email = req.body['email'],
+		password = req.body['password'];
 	
 	var query = {
 		text: 'SELECT COUNT(1) FROM "Users" WHERE "Username" = $1 OR "Email" = $2',
@@ -51,26 +52,28 @@ app.post('/register', function(req, res) {
 					res.send(['Failure', 'This username or email already exist!']);
 				}
 				else {
-					var pool2 = new pg.Pool(config);
-					var insertQuery = {
-						text: 'INSERT INTO "Users" ("Username", "Email", "Password") VALUES ($1, $2, $3)',
-						values: [username, email, password],
-					}
-					pool2.connect(function(err, client, done) {
-						if (err) {
-							return console.error('error fetching client from pool', err);
+					bcrypt.hash(password, saltRounds).then(function(hash) {
+						var pool2 = new pg.Pool(config);
+						var insertQuery = {
+							text: 'INSERT INTO "Users" ("Username", "Email", "Password") VALUES ($1, $2, $3)',
+							values: [username, email, hash],
 						}
-						console.log('Connected to postgres! Getting schemas...');
+						pool2.connect(function(err, client, done) {
+							if (err) {
+								return console.error('error fetching client from pool', err);
+							}
+							console.log('Connected to postgres! Getting schemas...');
 
-						client
-							.query(insertQuery, function(err, result) {
-								if(err) {
-									return console.error('error running query1', err);
-								}
-								console.log("Account added!");
-								done();
-							});
-						res.send(['Success']);
+							client
+								.query(insertQuery, function(err, result) {
+									if(err) {
+										return console.error('error running query1', err);
+									}
+									console.log("Account added!");
+									done();
+								});
+							res.send(['Success']);
+						});
 					});
 				}
 				done();
@@ -80,10 +83,8 @@ app.post('/register', function(req, res) {
 });
 
 app.post('/login', function(req, res) {
-	var data = JSON.parse(req.body['data']),
-		username = data['username'],
-		password = data['password'];
-	console.log('Loging user: ' + username);
+	var username = req.body['username'],
+		password = req.body['password'];
 	
 	var query = {
 		text: 'SELECT "Password" FROM "Users" WHERE "Username" = $1',
@@ -101,37 +102,43 @@ app.post('/login', function(req, res) {
 		client
 			.query(query, function(err, result) {
 				if(err) {
-					return console.error('error running query2', err);
+					return console.error('error running query', err);
 				}
 				
 				var count = result.rowCount;
-				
-				if(count == 0 || password != result.rows[0].Password) {
+				if(count == 0) {
 					res.send(['Failure', 'Invalid username or password!']);
 				}
 				else {
-					var pool2 = new pg.Pool(config);
-					var authKey = (new tokenGenerator(tokenGenerator.BASE36)).generate();
-					console.log(authKey);
-					var updateQuery = {
-						text: 'UPDATE "Users" SET "AuthKey" = $1 WHERE "Username" = $2',
-						values: [authKey, username],
-					}
-					pool2.connect(function(err, client, done) {
-						if (err) {
-							return console.error('error fetching client from pool', err);
+					bcrypt.compare(password, result.rows[0].Password).then(function(authenticated) {
+						if(!authenticated) {
+							res.send(['Failure', 'Invalid username or password!']);
 						}
-						console.log('Connected to postgres! Getting schemas...');
-
-						client
-							.query(updateQuery, function(err, result) {
-								if(err) {
-									return console.error('error running query3', err);
+						else {
+							var pool2 = new pg.Pool(config);
+							var authKey = (new tokenGenerator(tokenGenerator.BASE36)).generate();
+							console.log(authKey);
+							var updateQuery = {
+								text: 'UPDATE "Users" SET "AuthKey" = $1 WHERE "Username" = $2',
+								values: [authKey, username],
+							}
+							pool2.connect(function(err, client, done) {
+								if (err) {
+									return console.error('error fetching client from pool', err);
 								}
-								console.log("Loged in!");
-								done();
+								console.log('Connected to postgres! Getting schemas...');
+
+								client
+									.query(updateQuery, function(err, result) {
+										if(err) {
+											return console.error('error running query', err);
+										}
+										console.log("Logged in!");
+										done();
+									});
+								res.send(['Success', authKey]);
 							});
-						res.send(['Success', authKey]);
+						}
 					});
 				}
 				done();
@@ -164,7 +171,7 @@ app.get('/levels/:user', function(req, res) {
 		client
 			.query(query, function(err, result) {
 				if(err) {
-					return console.error('error running query4', err);
+					return console.error('error running query', err);
 				}
 				
 				var count = result.rowCount;
@@ -186,7 +193,7 @@ app.get('/levels/:user', function(req, res) {
 						client
 							.query(getQuery, function(err, result) {
 								if(err) {
-									return console.error('error running query5', err);
+									return console.error('error running query', err);
 								}
 								
 								res.send(['Success', result.rows[0].LastLevel]);
@@ -230,7 +237,7 @@ app.get('/:user/leaderboard/:levelNumber', function(req, res) {
 		client
 			.query(query, function(err, result) {
 				if(err) {
-					return console.error('error running query6', err);
+					return console.error('error running query', err);
 				}
 				
 				var count = result.rowCount;
@@ -255,7 +262,7 @@ app.get('/:user/leaderboard/:levelNumber', function(req, res) {
 						client
 							.query(getQuery, function(err, result) {
 								if(err) {
-									return console.error('error running query7', err);
+									return console.error('error running query', err);
 								}
 								var returnResult = "";
 								result.rows.forEach((row, index) => {
@@ -305,7 +312,7 @@ app.post('/:user/leaderboard/:levelNumber', function(req, res) {
 		client
 			.query(query, function(err, result) {
 				if(err) {
-					return console.error('error running query8', err);
+					return console.error('error running query', err);
 				}
 				
 				var count = result.rowCount;
@@ -330,7 +337,7 @@ app.post('/:user/leaderboard/:levelNumber', function(req, res) {
 						client
 							.query(getQuery, function(err, result) {
 								if(err) {
-									return console.error('error running query9', err);
+									return console.error('error running query', err);
 								}
 								
 								if(result.rowCount > 0) {
@@ -387,7 +394,7 @@ app.post('/:user/leaderboard/:levelNumber', function(req, res) {
 										client
 											.query(selectQuery1, function(err, result) {
 												if(err) {
-													return console.error('error running query10', err);
+													return console.error('error running query', err);
 												}
 												var userId = result.rows[0].Id;
 												
@@ -407,7 +414,7 @@ app.post('/:user/leaderboard/:levelNumber', function(req, res) {
 													client
 														.query(insertQuery, function(err, result) {
 															if(err) {
-																return console.error('error running query10', err);
+																return console.error('error running query', err);
 															}
 															done();
 														});
@@ -433,7 +440,7 @@ app.post('/:user/leaderboard/:levelNumber', function(req, res) {
 										client
 											.query(updateQuery2, function(err, result) {
 												if(err) {
-													return console.error('error running query10', err);
+													return console.error('error running query', err);
 												}
 												done();
 											});
